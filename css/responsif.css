@@ -6,12 +6,10 @@
   .logo, .links {
     height: 45px;
   }
-
   .logo h1 {
     font-size: 28px;
     line-height: 45px;
   }
-
   .links {
     flex-direction: column;
     align-items: flex-end;
@@ -28,23 +26,22 @@
     display: block;
   }
   .links .bars-active {
-    color: var(--blue);
+    color: var(--fontBlack);
     background-color: var(--layerWhite);
     font-size: 16px;
     transition: 0.2s;
   }
   .links a {
     margin-bottom: 5px;
-    color: var(--fontBlack);
-    background-color: var(--layerWhite);
+    color: var(--fontWhite);
+    background-color: var(--layerNavy);
     text-align: right;
   }
   .links a:hover {
-    color: var(--fontWhite);
-    background-color: var(--layerNavy);
+    color: var(--fontBlack);
+    background-color: var(--layerWhite);
     /* display: none; */
   }
-
   .links a, .links i {
     line-height: 45px;
   }
@@ -88,16 +85,13 @@
   .logo, .links {
     height: 40px;
   }
-
   .logo h1 {
     font-size: 28px;
     line-height: 40px;
   }
-
   .links div {
     min-width: 80%;
   }
-
   .links .bars-active {
     color: var(--blue);
     background-color: var(--layerWhite);

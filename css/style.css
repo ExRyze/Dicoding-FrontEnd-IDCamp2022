@@ -1,14 +1,13 @@
 :root {
-  --layerWhite:     #EDEDED;
+  --layerWhite:     #EFFFFB;
   --layerGray:      #D8D7C3;
-  --layerLightBlue: #61BDF6;
-  --layerNavy:      #0404c4;
-  --layerBlack:     #000033;
+  --layerLightBlue: #0075F6;
+  --layerNavy:      #0900C3;
+  --layerBlack:     #1D1919;
 
   --fontWhite:      #ffffff;
   --fontBlack:      #000000;
 }
-
 * {
   padding: 0;
   margin: 0;
@@ -18,11 +17,12 @@
   letter-spacing: 0.1px;
   box-sizing: border-box;
 }
-
 strong {
   font-weight: bold;
 }
-
+.clear {
+  clear: both;
+}
 body {
   position: relative;
 }
@@ -104,55 +104,27 @@ article {
 }
 
 @keyframes tonext {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: 100%;
-  }
-  98% {
-    left: 100%;
-  }
-  99% {
-    left: 0;
-  }
+  75% {left: 0;}
+  95% {left: 100%;}
+  98% {left: 100%;}
+  99% {left: 0;}
 }
-
 @keyframes tostart {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: -300%;
-  }
-  98% {
-    left: -300%;
-  }
-  99% {
-    left: 0;
-  }
+  75% {left: 0;}
+  95% {left: -300%;}
+  98% {left: -300%;}
+  99% {left: 0;}
 }
-
 @keyframes snap {
-  96% {
-    scroll-snap-align: center;
-  }
-  97% {
-    scroll-snap-align: none;
-  }
-  99% {
-    scroll-snap-align: none;
-  }
-  100% {
-    scroll-snap-align: center;
-  }
+  96% {scroll-snap-align: center;}
+  97% {scroll-snap-align: none;}
+  99% {scroll-snap-align: none;}
+  100% {scroll-snap-align: center;}
 }
-
 .carousel {
   width: 100%;
   position: relative;
 }
-
 .carousel-viewport {
   width: 100%;
   display: flex;
@@ -165,21 +137,17 @@ article {
   width: 0;
   height: 0;
 }
-
 .carousel li {
   list-style: none;
 }
-
 .carousel-slide {
   position: relative;
   flex: 0 0 100%;
   width: 100%;
 }
-
 .carousel-slide img {
   width: 100%;
 }
-
 .carousel-nav {
   position: absolute;
   top: 0;
@@ -188,7 +156,6 @@ article {
   height: 100%;
   scroll-snap-align: center;
 }
-
 @media (hover: hover) {
   .carousel-nav {
     animation-name: tonext, snap;
@@ -196,35 +163,27 @@ article {
     animation-duration: 4s;
     animation-iteration-count: infinite;
   }
-
   .carousel-slide:last-child .carousel-nav {
     animation-name: tostart, snap;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .carousel-nav {
     animation-name: none;
   }
 }
-
-.carousel:hover .carousel-nav,
-.carousel:focus-within .carousel-nav {
+.carousel:hover .carousel-nav, .carousel:focus-within .carousel-nav {
   animation-name: none;
 }
-
-.carousel-prev,
-.carousel-next {
+.carousel-prev, .carousel-next {
   width: 4rem;
   height: 100%;
   position: absolute;
   top: 0;
 }
-
 .carousel-prev {
   left: 0;
 }
-
 .carousel-next {
   right: 0;
 }
@@ -232,7 +191,7 @@ article {
 .name-tag {
   width: 75%;
   margin: 20px 0;
-  background-color: var(--layerNavy);
+  background-color: var(--layerLightBlue);
   position: relative;
   left: -30px;
 }
@@ -267,8 +226,6 @@ aside {
   width: 30%;
   padding: 20px 0 20px 20px;
   float: right;
-  /* position: sticky;
-  bottom: 0; */
 }
 .aside-container {
   width: 100%;
@@ -298,8 +255,8 @@ aside {
 .img-profile img {
   width: inherit;
   position: absolute;
-  left: -44px;
-  bottom: -46px;
+  left: -45px;
+  bottom: -45px;
   transform: rotate(-45deg);
 }
 
@@ -320,13 +277,15 @@ aside {
   width: 5%;
 }
 .information-profile tr td:nth-child(2) {
-  width: 35%;
+  width: 39%;
   font-weight: bold;
 }
 .information-profile tr td:nth-child(3) {
-  width: 60%;
+  width: 1%;
 }
-
+.information-profile tr td:nth-child(4) {
+  width: 55%;
+}
 .links-profile {
   width: 100%;
   display: flex;
@@ -348,12 +307,9 @@ aside {
   box-shadow: 0px 0px var(--layerWhite);
 }
 
-.clear {
-  clear: both;
-}
-
 footer {
   width: 100%;
+  border-top: 5px solid var(--layerGray);
   background-color: var(--layerBlack);
 }
 .footer {
