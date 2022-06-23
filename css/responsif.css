@@ -137,4 +137,14 @@
   .game-desc {
     width: 100%;
   }
+
+  .footer-desc {
+    flex-direction: column;
+  }
+  .footer-logo {
+    width: 50%;
+  }
+  .footer-info {
+    width: 100%;
+  }
 }
