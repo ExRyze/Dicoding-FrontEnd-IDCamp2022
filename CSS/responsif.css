@@ -120,3 +120,19 @@
     padding: 10px;
   }
 }
+
+@media(max-width:480px) {
+  .name-tag {
+    width: 85%;
+  }
+  .cover-game {
+    width: 75%;
+    margin: 0 auto;
+  }
+  .cover-game, .game-desc {
+    float: none;
+  }
+  .game-desc {
+    width: 100%;
+  }
+}
