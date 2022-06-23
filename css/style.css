@@ -215,7 +215,7 @@ article .target {
   top: 0;
 }
 .name-tag {
-  width: 75%;
+  width: 90%;
   margin: 20px 0;
   background-color: var(--layerLightBlue);
   position: relative;
@@ -232,6 +232,17 @@ article .target {
   border-bottom: 15px solid transparent;
   position: absolute;
   bottom: -15px;
+}
+.name-tag .shape-side-up, .name-tag .shape-side-down {
+  border-right: 30px solid transparent;
+  position: absolute;
+  right: -30px;
+}
+.name-tag .shape-side-up {
+  top: 0;
+}
+.name-tag .shape-side-down {
+  bottom: 0;
 }
 .cover-game {
   width: 30%;

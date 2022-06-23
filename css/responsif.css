@@ -132,9 +132,6 @@
 }
 
 @media(max-width:480px) {
-  .name-tag {
-    width: 85%;
-  }
   .cover-game {
     width: 75%;
     margin: 0 auto;
