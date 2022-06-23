@@ -38,32 +38,39 @@
     <article>
       <section class="carousel" aria-label="Gallery">
         <ol class="carousel-viewport">
-          <li id="carousel_slide1" class="carousel-slide">
+          <li class="carousel-slide">
+            <div class="target" id="carousel_slide1_prev"></div>
             <a href="#omori"><img src="resource/image/omori_header.jpg"></a>
             <div class="carousel-nav">
-              <a href="#carousel_slide3" class="carousel-prev"></a>
-              <a href="#carousel_slide2" class="carousel-next"></a>
+              <a href="#carousel_slide3_next" class="carousel-prev"></a>
+              <a href="#carousel_slide2_next" class="carousel-next"></a>
             </div>
+            <div class="target" id="carousel_slide1_next"></div>
           </li>
-          <li id="carousel_slide2" class="carousel-slide">
+          <li class="carousel-slide">
+            <div class="target" id="carousel_slide2_prev"></div>
             <a href="#cities-skyline"><img src="resource/image/cities_skyline_header.jpg"></a>
             <div class="carousel-nav">
-              <a href="#carousel_slide1" class="carousel-prev"></a>
-              <a href="#carousel_slide3" class="carousel-next"></a>
+              <a href="#carousel_slide1_prev" class="carousel-prev"></a>
+              <a href="#carousel_slide3_next" class="carousel-next"></a>
             </div>
+            <div class="target" id="carousel_slide2_next"></div>
           </li>
-          <li id="carousel_slide3" class="carousel-slide">
+          <li class="carousel-slide">
+            <div class="target" id="carousel_slide3_prev"></div>
             <a href="genshin-impact"><img src="resource/image/genshin_impact_header.jpg"></a>
             <div class="carousel-nav">
-              <a href="#carousel_slide2" class="carousel-prev"></a>
-              <a href="#carousel_slide1" class="carousel-next"></a>
+              <a href="#carousel_slide2_prev" class="carousel-prev"></a>
+              <a href="#carousel_slide1_prev" class="carousel-next"></a>
             </div>
+            <div class="target" id="carousel_slide3_next"></div>
           </li>
         </ol>
       </section>
     </article>
 
-    <article class="game-info" id="omori">
+    <article class="game-info">
+      <div class="target" id="omori"></div>
       <div class="name-tag"><h2>OMORI</h2><div class="shape-bottom"></div></div>
       <section class="cover-game">
         <img src="resource/image/omori_cover.jpg" alt="omori_cover.jpg">
@@ -77,7 +84,8 @@
       <div class="clear"></div>
     </article>
 
-    <article class="game-info" id="cities-skyline">
+    <article class="game-info">
+      <div class="target" id="cities-skyline"></div>
       <div class="name-tag"><h2>Cities: Skyline</h2><div class="shape-bottom"></div></div>
       <section class="cover-game">
         <img src="resource/image/cities_skyline_cover.jpg" alt="cities_skyline_cover.jpg">
@@ -90,7 +98,8 @@
       <div class="clear"></div>
     </article>
 
-    <article class="game-info" id="genshin-impact">
+    <article class="game-info">
+      <div class="target" id="genshin-impact"></div>
       <div class="name-tag"><h2>Genshin Impact</h2><div class="shape-bottom"></div></div>
       <section class="cover-game">
         <img src="resource/image/genshin_impact_cover.jpg" alt="genshin_impact_cover.jpg">
@@ -161,7 +170,7 @@
         </div>
       </div>
       <div class="copyright">
-        <p>&copy 2022 ExRyze - IDCamp</p>
+        <p>Created by ExRyze | &copy 2022</p>
       </div>
     </div>
   </footer>

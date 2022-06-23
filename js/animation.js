@@ -20,3 +20,23 @@ bars.addEventListener("click", function() {
   }
 }
 )
+
+const link = document.querySelectorAll(".links div a")
+
+for(let item of link) {
+  item.addEventListener("click", function() {
+    checkSiblingsNavA();
+    if(item.classList.contains("active")) {
+      item.classList.remove("active");
+    } else {
+      item.classList.add("active");
+    }
+  })
+}
+function checkSiblingsNavA() {
+  for(let object of link) {
+    if(object.classList.contains("active")){
+      object.classList.remove("active");
+    }
+  }
+}

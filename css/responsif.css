@@ -57,6 +57,10 @@
     width: 100%;
   }
 
+  article .target {
+    margin-top: -95px;
+  }
+
   aside {
     width: 100%;
     padding: 20px;
@@ -112,6 +116,10 @@
   }
   .links a:hover, .links i:hover {
     font-size: 15px;
+  }
+
+  article .target {
+    margin-top: -90px;
   }
 
   .game-desc p {

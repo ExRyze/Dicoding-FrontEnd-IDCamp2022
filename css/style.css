@@ -92,6 +92,12 @@ nav {
   font-size: 18px;
   transition: 0.2s;
 }
+.links div a.active {
+  color: var(--blue);
+  background-color: var(--layerWhite);
+  font-size: 18px;
+  transition: 0.2s;
+}
 
 nav .bars-container {
   display: none;
@@ -111,6 +117,7 @@ article {
   border-radius: 20px;
   margin-bottom: 40px;
   background-color: var(--layerWhite);
+  position: relative;
   box-shadow: 5px 5px var(--layerGray);
 }
 
@@ -156,6 +163,9 @@ article {
   flex: 0 0 100%;
   width: 100%;
 }
+.carousel-slide .carousel-nav+.target {
+  right: 0;
+}
 .carousel-slide img {
   width: 100%;
 }
@@ -199,6 +209,11 @@ article {
   right: 0;
 }
 
+article .target {
+  margin-top: -100px;
+  position: absolute;
+  top: 0;
+}
 .name-tag {
   width: 75%;
   margin: 20px 0;
