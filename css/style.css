@@ -421,6 +421,12 @@ footer {
   text-align: center;
   font-weight: bold;
 }
+.copyright span a {
+  font-weight: bold;
+}
+.copyright span a:hover {
+  text-decoration: underline;
+}
 
 @media(max-width:1024px) {
   * {
