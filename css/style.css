@@ -46,15 +46,20 @@ nav {
   position: relative;
 }
 
-.logo, .links {
+.logo, .links, .logo a {
   width: 50%;
   height: 50px;
   display: flex;
   flex-direction: row;
 }
 
+nav .logo a {
+  width: fit-content;
+  height: 100%;
+}
 .logo img {
-  padding: 5px;
+  border-radius: 50%;
+  margin: 5px;
 }
 .logo h1 {
   padding: 0 10px;
@@ -62,6 +67,16 @@ nav {
   font-size: 32px;
   font-weight: bold;
   line-height: 50px;
+}
+.logo a:hover img {
+  margin: 7px;
+  box-shadow: 5px 5px var(--layerBlack);
+  transition: 0.2s;
+}
+.logo a:hover h1 {
+  font-size: 28px;
+  text-shadow: 5px 5px var(--layerBlack);
+  transition: 0.2s;
 }
 
 .links {
