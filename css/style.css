@@ -444,11 +444,11 @@ footer {
     align-items: flex-end;
   }
   .links div {
-    min-width: 50%;
+    min-width: 60%;
     height: fit-content;
     flex-direction: column;
     position: relative;
-    top: -233%;
+    top: -444%;
     z-index: -1;
   }
   .links i {
@@ -520,6 +520,7 @@ footer {
   nav {
     width: 100%;
     margin: 0;
+    gap: 10px;
   }
   .logo, .links {
     height: 40px;
@@ -564,6 +565,13 @@ footer {
 }
 
 @media(max-width:480px) {
+  nav {
+    gap: 5px;
+  }
+  .links div {
+    min-width: 100%;
+  }
+
   .cover-game {
     width: 75%;
     margin: 0 auto;

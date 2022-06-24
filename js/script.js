@@ -5,7 +5,7 @@ bars.addEventListener("click", function() {
   if(links.classList.contains("links-slide-down")){
     links.classList.remove("links-slide-down");
     links.style.cssText = `
-      top: -233%;
+      top: -444%;
       transition: 2s;
     `;
     bars.classList.remove("bars-active");
