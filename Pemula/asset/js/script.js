@@ -17,10 +17,14 @@ if (typeof(Storage) !== 'undefined') {
     for(let i=0; i<temporaryBookData.length; i++){
       if(temporaryBookData[i]["isComplete"] == true) {
         temporaryReadedBook.push(temporaryBookData[i]);
-        readed.innerHTML += book;
+        if(temporaryReadedBook.length <= 50) {
+          readed.innerHTML += book;
+        }
       } else {
         temporaryUnreadBook.push(temporaryBookData[i]);
-        unread.innerHTML += book;
+        if(temporaryUnreadBook.length <= 50) {
+          unread.innerHTML += book;
+        }
       }
     }
   } else {

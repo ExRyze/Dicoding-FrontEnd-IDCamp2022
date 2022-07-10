@@ -28,9 +28,6 @@
 h1 { font-size: 3vw; font-weight: bold;}
 h2 { font-size: 2vw; font-weight: bold;}
 h3 { font-size: 1vw; font-weight: bold;}
-h4 { font-size: 20px; font-weight: bold;}
-h5 { font-size: 16px; font-weight: bold;}
-h6 { font-size: 12px; font-weight: bold;}
 
 img.cover-book {  aspect-ratio: 1 / 16.5;}
 
@@ -336,19 +333,22 @@ footer .table div img {
   cursor: pointer;
 }
 
-@media(max-width:1024px) {
-  h4 { font-size: 18px;}
-  h5 { font-size: 14px;}
-  h6 { font-size: 11px;}
-}
-
-@media(max-width:767px) {
-  h4 { font-size: 16px;}
-  h5 { font-size: 12px;}
-  h6 { font-size: 10px;}
+@media(max-width:768px) {
+  section div {width: 40%;}
 }
 
 @media(max-width:480px) {
-  h4 { font-size: 14px;}
-  h5 { font-size: 11px;}
+  section {
+    height: 25vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30%;
+    top: 5%;
+  }
+  section div {width: 75%;}
+  footer .table {
+    height: 75%;
+    top: -35%;
+  }
 }
