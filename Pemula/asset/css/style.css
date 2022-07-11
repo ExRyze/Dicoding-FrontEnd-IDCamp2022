@@ -81,7 +81,7 @@ section {
   top: 25%;
 }
 section div {
-  width: 30%;
+  width: 40%;
   height: 100%;
   position: relative;
 }
@@ -148,7 +148,7 @@ section .shelf {
 .container .desc {
   width: 100%;
   height: 100%;
-  padding: 5% 2% 2%;
+  padding: 5% 2.5% 2.5%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -339,6 +339,7 @@ footer .table div img {
   h1 {font-size: 32px;}
   h2 {font-size: 24px;}
   h3 {font-size: 12px;}
+  .container .desc {padding: 7.5% 2.5% 2.5%;}
   .add-dataset .data h3 {font-size: 24px;}
   .book-desc .title + h3 {font-size: 20px;}
 }
@@ -350,10 +351,7 @@ footer .table div img {
   h3 {font-size: 8px;}
   .add-dataset .data h3 {font-size: 16px;}
   .book-desc .title + h3 {font-size: 12px;}
-  section div {width: 40%;}
-}
 
-@media(max-width:480px) {
   section {
     height: 25vh;
     display: block;
@@ -365,6 +363,9 @@ footer .table div img {
   }
   section > div + div {margin-top: 10%;}
   .shelf h2 {top: 100%;}
+}
+
+@media(max-width:480px) {
   footer .table {
     height: 75%;
     top: -35%;
