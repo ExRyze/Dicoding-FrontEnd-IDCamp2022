@@ -150,19 +150,28 @@ section .shelf {
 .desc .information, .desc .dataset {
   width: 80%;
   height: 100%;
+  overflow-y: scroll;
 }
 .desc .information div {
   width: 100%;
   height: fit-content;
   margin-bottom: 3vh;
 }
-.desc .information div + div {
+.desc .information div:nth-child(last) {
   margin-bottom: 0;
 }
 .desc .information div p, .desc .information div h3 {
   margin-bottom: 1vh;
   color: var(--fontBlack);
 }
+.desc .information div ol {
+  width: 80%;
+  position: relative;
+  left: 10%;
+}
+.information div.copyright p {text-align: center;}
+.information div.copyright p span a {color: #0900C3;}
+.information div.copyright p span a:hover {text-decoration: underline;}
 .desc .addBook {
   width: 3%;
   height: 3vw;
@@ -175,7 +184,7 @@ section .shelf {
   color: var(--fontBlack);
   text-align: center;
 }
-.dataset::-webkit-scrollbar {
+.information::-webkit-scrollbar, .dataset::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -183,7 +192,6 @@ section .shelf {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow-y: scroll;
 }
 .desc .add-dataset {
   justify-content: center;

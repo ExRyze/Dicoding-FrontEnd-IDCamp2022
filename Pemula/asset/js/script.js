@@ -223,8 +223,14 @@ const questiond =
   </div>
   <div>
     <h3>- Note:</h3>
-    <p></p>
+    <ol>
+      <li>To view all books, click the monitor image.</li>
+      <li>And to view specific books, such as read or unread, click a book on the respective shelf.</li>
+      <li>Then, to add new book data, click the monitor image (or click a book on the respective shelf), then click the "+" icon, and enter the book data you want to add.</li>
+      <li>The picture of the book is just a decoration, actually the creator wants to add a feature to add a book cover, so the picture shown is just a decoration.</li>
+    </ol>
   </div>
+  <div class="copyright"><p>Created by <span><a href="https://github.com/ExRyze">ExRyze</a></span> | &copy 2022</p></div>
 </div>`;
 const monitord = 
 `<div class="addBook">

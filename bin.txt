@@ -1,0 +1,16 @@
+gambar dari punggung buku hanyalah penghias, sepebenarnya Pembuat ingin menambahkan fitur untuk menambahkan cover buku, jadi gambar yang ditampilkan hanyalah penghias.
+
+untuk melihat semua buku, klik gambar monitor.
+
+dan untuk melihat buku yang spesifik, seperti sudah atau belum dibaca, klik salah satu buku pada rak masing-masing.
+
+untuk menambahkan data buku baru, klik gambar monitor, lalu klik icon "+", dan masukkan data buku yang ingin di tambahkan
+
+
+to view all books, click the monitor image.
+
+and to view specific books, such as read or unread, click a book on the respective shelf .
+
+then, to add new book data, click the monitor image (or click a book on the respective shelf), then click the "+" icon, and enter the book data you want to add.
+
+the picture of the book is just a decoration, actually the creator wants to add a feature to add a book cover, so the picture shown is just a decoration.
