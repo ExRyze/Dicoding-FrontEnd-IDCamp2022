@@ -29,7 +29,7 @@ h1 { font-size: 40px; font-weight: bold;}
 h2 { font-size: 32px; font-weight: bold;}
 h3 { font-size: 16px; font-weight: bold;}
 
-img.cover-book {  aspect-ratio: 1 / 16.5;}
+img.cover-book {aspect-ratio: 1 / 16.5;}
 
 body {
   height: 100vh;
@@ -351,7 +351,6 @@ footer .table div img {
   h3 {font-size: 8px;}
   .add-dataset .data h3 {font-size: 16px;}
   .book-desc .title + h3 {font-size: 12px;}
-
   section {
     height: 25vh;
     display: block;
@@ -363,11 +362,18 @@ footer .table div img {
   }
   section > div + div {margin-top: 10%;}
   .shelf h2 {top: 100%;}
+  footer .table {
+    height: 75%;
+    top: -15%;
+  }
 }
 
 @media(max-width:480px) {
-  footer .table {
-    height: 75%;
-    top: -35%;
-  }
+  .container .desc {padding: 10% 2.5% 2.5%;}
+  footer .table {top: -35%;}
+}
+
+@media (max-width: 360px) {
+  .container .desc {padding: 12.5% 2.5% 2.5%;}
+  section div {width: 80%;}
 }
