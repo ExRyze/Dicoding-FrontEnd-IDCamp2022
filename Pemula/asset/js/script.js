@@ -31,7 +31,6 @@ if (typeof(Storage) !== 'undefined') {
     localStorage.setItem(localStorageKey, JSON.stringify(temporaryBookData))
   }
 }
-
 function updateBooks() {
   var allBook = document.getElementsByClassName("book");
   for(let i=0; i<allBook.length; i++) {
@@ -60,7 +59,6 @@ function validateFormInput() {
     alert("Your book is saved")
   }
 }
-
 function validateFormEdit(xId, i) {
   let input = document.forms["input"];
   let inputTitle = input["title"].value;
@@ -88,6 +86,13 @@ function checkType(xh) {
   else if(xh == unreadh) {setDataBooks(temporaryUnreadBook); updateBooks(); getAction(temporaryUnreadBook);}
 }
 function setDataBooks(x) {
+  x.sort(function(a, b){
+    let x = a.title.toLowerCase();
+    let y = b.title.toLowerCase();
+    if (x < y) {return -1;}
+    if (x > y) {return 1;}
+    return 0;
+  });
   for(let i=0; i<x.length; i++){
     var Id = x[i]['id'];
     var title = x[i]['title'];
@@ -195,13 +200,6 @@ function repeatGetAction(x, xe) {
   }
 }
 
-
-
-
-
-
-
-
 const question = document.querySelector(".question");
 const monitor = footer.querySelector(".monitor");
 const container = document.querySelector(".container");
@@ -242,11 +240,11 @@ function addBookd(validate) {
       <h3>Input Data</h3>
       <form name="input" onsubmit="`+validate+`">
         <label for="title">Title :</label>
-        <input type="text" name="title" id="title" placeholder="Input Title">
+        <input autocomplete="off" type="text" name="title" id="title" placeholder="Input Title">
         <label for="author">Author :</label>
-        <input type="text" name="author" id="author" placeholder="Input Author">
+        <input autocomplete="off" type="text" name="author" id="author" placeholder="Input Author">
         <label for="year">Year :</label>
-        <input type="number" name="year" id="year" placeholder="Input Year">
+        <input autocomplete="off" type="number" name="year" id="year" placeholder="Input Year">
         <input type="checkbox" name="isComplete" id="isComplete">
         <label for="isComplete">Readed</label>
         <input type="submit" value="Submit">
@@ -254,8 +252,7 @@ function addBookd(validate) {
     </div>
   </div>
 </div>`
-  
-}
+};
 
 const containerh = container.querySelector("h2");
 const containerd = container.querySelector(".desc");
@@ -270,7 +267,6 @@ function repeatBookShelf(x, xh){
     setUpBooks(x[i], xh);
   }
 }
-
 function setUpBooks(x, xh) {
   x.addEventListener("click", function() {
     container.classList.add("active");
@@ -281,7 +277,6 @@ function setUpBooks(x, xh) {
     containerVisible(addBook, addBookh, addBookd("validateFormInput()"))
   });
 }
-
 function containerVisible(x, xh, xd) {
   x.addEventListener("click", function() {
     container.classList.add("active");
