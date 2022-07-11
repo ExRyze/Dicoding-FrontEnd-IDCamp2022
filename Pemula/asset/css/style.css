@@ -397,3 +397,9 @@ footer .table div img {
   .question {width: 7.5%; height: 7.5vw;}
   section div {width: 80%;}
 }
+
+@media(max-height:480px) and (max-width:720px) {
+  section {display: flex; top: 15%;}
+  section > div {width: 40%;}
+  section > div + div {margin-top: 0%;}
+}
