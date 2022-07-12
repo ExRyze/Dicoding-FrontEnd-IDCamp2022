@@ -158,7 +158,7 @@ section .shelf {
   height: fit-content;
   margin-bottom: 3vh;
 }
-.desc .information div:nth-child(last) {
+.desc .information div:nth-last-child(1) {
   margin-bottom: 0;
 }
 .desc .information div p, .desc .information div h3 {
@@ -180,6 +180,7 @@ section .shelf {
   right: 2.5vh;
   bottom: 2.5vh;
   cursor: pointer;
+  z-index: 2;
 }
 .desc .addBook h2 {
   color: var(--fontBlack);
@@ -189,17 +190,41 @@ section .shelf {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  position: relative;
+  z-index: -2;
 }
-.desc .add-dataset {
-  justify-content: center;
+.desc .search {
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 2.5%;
+  background-color: var(--brownPrimary);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
+.search form {
+  width: 100%;
+  height: 5%;
+  padding: 1% 0.5%;
+  display: flex;
+  justify-content: space-around;
+}
+.search form input {width: 65%;}
+.search form input + button {
+  width: 15%;
+  background-color: var(--layerLightBlue);
+  cursor: pointer;
+}
+.desc .add-dataset {justify-content: center;}
 .desc .dataset .data {
   width: 50%;
   height: 100%;
   padding: 0 2% 2% 0;
+  z-index: 0;
 }
 .desc .add-dataset .data {padding: 0;}
-.desc .dataset .data:nth-child(even) {padding: 0 0 2% 2%;}
+.desc .dataset .data:nth-child(odd) {padding: 0 0 2% 2%;}
 .desc .dataset .data > div {
   width: 100%;
   height: 100%;
@@ -374,7 +399,15 @@ footer .table div img {
   h2 {font-size: 16px;}
   .container .desc {padding: 10% 2.5% 2.5%;}
   .desc .dataset .data {width: 100%;}
+  .desc .dataset .data {padding: 0 0 2%;}
+  .desc .dataset .data:nth-child(odd) {padding: 0 0 2%;}
   .desc .addBook {width: 5%;}
+  .search form input {
+    width: 70%;
+  }
+  .search form input + button {
+    width: 20%;
+  }
   .container .close {
     width: 4vh;
     height: 4vh;

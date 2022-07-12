@@ -80,10 +80,39 @@ function validateFormEdit(xId, i) {
   }
 }
 
+function validateFormSearch(y) {
+    let input = document.forms["search"];
+    let inputTitle = input["title"].value;
+    let result = [];
+    for(let i=0; i<y.length; i++) {
+      if(y[i]['title'].includes(inputTitle)){
+        result.push(y[i])
+      }
+    }
+    var data = document.querySelectorAll(".data");
+    for(let i=0; i<data.length; i++) {
+      data[i].remove();
+
+    }
+    setDataBooks(result);
+    updateBooks();
+    getAction(result);
+}
+
 function checkType(xh) {
-  if(xh == monitorh) {setDataBooks(temporaryBookData); updateBooks(); getAction(temporaryBookData);}
-  else if(xh == readedh) {setDataBooks(temporaryReadedBook); updateBooks(); getAction(temporaryReadedBook);}
-  else if(xh == unreadh) {setDataBooks(temporaryUnreadBook); updateBooks(); getAction(temporaryUnreadBook);}
+  if(xh == monitorh) {setFormSearch("temporaryBookData"); setDataBooks(temporaryBookData); updateBooks(); getAction(temporaryBookData);}
+  else if(xh == readedh) {setFormSearch("temporaryReadedBook"); setDataBooks(temporaryReadedBook); updateBooks(); getAction(temporaryReadedBook);}
+  else if(xh == unreadh) {setFormSearch("temporaryUnreadBook"); setDataBooks(temporaryUnreadBook); updateBooks(); getAction(temporaryUnreadBook);}
+}
+function setFormSearch(x) {
+  var dataset = document.querySelector(".dataset");
+  dataset.innerHTML +=
+  ` <div class="search">
+      <form name="search" id="search" onsubmit="return false">
+        <input autocomplete="off" type="text" name="title" placeholder="Input Title">
+        <button onclick="validateFormSearch(`+x+`)">Search</button>
+      </form>
+    </div>`;
 }
 function setDataBooks(x) {
   x.sort(function(a, b){
@@ -277,7 +306,7 @@ function setUpBooks(x, xh) {
     container.classList.add("active");
     containerh.innerHTML = xh;
     containerd.innerHTML = monitord;
-    var addBook = containerd.querySelector(".addBook");
+    addBook = containerd.querySelector(".addBook");
     checkType(xh)
     containerVisible(addBook, addBookh, addBookd("validateFormInput()"))
   });
