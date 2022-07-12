@@ -148,9 +148,10 @@ section .shelf {
   position: relative;
 }
 .desc .information, .desc .dataset {
-  width: 80%;
+  width: 85%;
   height: 100%;
-  overflow-y: scroll;
+  padding-right: 2.5%;
+  overflow-y: auto;
 }
 .desc .information div {
   width: 100%;
@@ -183,10 +184,6 @@ section .shelf {
 .desc .addBook h2 {
   color: var(--fontBlack);
   text-align: center;
-}
-.information::-webkit-scrollbar, .dataset::-webkit-scrollbar {
-  width: 0;
-  height: 0;
 }
 .desc .dataset {
   display: flex;

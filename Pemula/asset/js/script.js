@@ -43,7 +43,7 @@ function validateFormInput() {
   let input = document.forms["input"];
   let inputTitle = input["title"].value;
   let inputAuthor = input["author"].value;
-  let inputYear = input["year"].value;
+  let inputYear = parseInt(input["year"].value);
   let inputIsComplete = input["isComplete"].checked;
 
   if (inputTitle == "" && inputAuthor == "" && inputYear == "") {alert("Please complete the form!");} 
@@ -63,7 +63,7 @@ function validateFormEdit(xId, i) {
   let input = document.forms["input"];
   let inputTitle = input["title"].value;
   let inputAuthor = input["author"].value;
-  let inputYear = input["year"].value;
+  let inputYear = parseInt(input["year"].value);
   let inputIsComplete = input["isComplete"].checked;
 
   if (inputTitle == "" && inputAuthor == "" && inputYear == "") {alert("Please complete the form!");} 
@@ -217,15 +217,14 @@ const questiond =
 `<div class="information">
   <div>
     <p> Hi! Welcome to this website, <br>
-        this website created for final submission in "Belajar Membuat Front-End Web untuk Pemula
-        " class on IDCamp2022. The creator hope this is what the reviewer team wants.</p>
+        this website created for final submission in "Belajar Membuat Front-End Web untuk Pemula" class on IDCamp2022. The creator hope this is what the reviewer team wants.</p>
     <p> On this website, users can manage books, such as adding, deleting, or editing books.</p>
   </div>
   <div>
     <h3>- Note:</h3>
     <ol>
       <li>To view all books, click the monitor image.</li>
-      <li>And to view specific books, such as read or unread, click a book on the respective shelf.</li>
+      <li>And to view specific books, such as readed or unread, click a book on the respective shelf.</li>
       <li>Then, to add new book data, click the monitor image (or click a book on the respective shelf), then click the "+" icon, and enter the book data you want to add.</li>
       <li>The picture of the book is just a decoration, actually the creator wants to add a feature to add a book cover, so the picture shown is just a decoration.</li>
     </ol>
