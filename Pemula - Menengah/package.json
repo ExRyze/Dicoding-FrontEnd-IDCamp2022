@@ -2,7 +2,7 @@
   "name": "pemula---menengah",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "asset/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +11,8 @@
   "dependencies": {
     "bootstrap": "^5.2.1",
     "jquery": "^3.6.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
