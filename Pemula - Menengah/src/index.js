@@ -1,3 +1,4 @@
+import "./style/style.css";
 import $ from "jquery";
 
 const h1 = () => {
