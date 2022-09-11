@@ -11,8 +11,5 @@
   "dependencies": {
     "bootstrap": "^5.2.1",
     "jquery": "^3.6.1"
-  },
-  "devDependencies": {
-    "http-server": "^14.1.1"
   }
 }
