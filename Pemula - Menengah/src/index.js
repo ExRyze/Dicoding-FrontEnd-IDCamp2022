@@ -2,14 +2,16 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style/style.css";
 import $ from "jquery";
 
-$(".h1").text("Hellow");
-
 class animeCard extends HTMLElement {
   connectedCallback() {
-    this.src = this.getAttribute("src") || null;
+    this.src = $(this).attr("src") || null;
 
     this.innerHTML = `
-    <img src="${this.src}">
+    <div class="card bg-secondary w-100" role="button">
+      <div class="card-body">
+        <img src="${this.src}" class="w-25">
+      </div>
+    </div>
     `;
   }
 };
@@ -21,8 +23,9 @@ async function getAnime() {
     const allAnime = await response.json();
     allAnime.data.forEach(anime => {
       const card = document.createElement("anime-card");
-      card.setAttribute("src", anime.images.jpg.image_url);
-      document.body.querySelector(".card-body").appendChild(card);
+      $(card).attr("src", anime.images.jpg.image_url);
+      $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2")
+      $(".display").append(card);
     });
   } catch (error) {
     console.log(error);
