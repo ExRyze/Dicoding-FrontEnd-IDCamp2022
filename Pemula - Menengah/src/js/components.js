@@ -1,14 +1,14 @@
 class animeCard extends HTMLElement {
-  constructor() {
-    super();
-    this.addEventListener("click", function () {
-      window.location.href = "about.html";
-    })
-  }
-
   set datas(dataset) {
     this._dataset = dataset;
     this.create();
+  }
+
+  constructor() {
+    super();
+    this.addEventListener("click", function () {
+      window.location.href = `anime.html#${this._dataset.id}`;
+    })
   }
 
   create() {

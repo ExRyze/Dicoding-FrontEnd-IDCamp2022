@@ -11,9 +11,9 @@ async function getAnime() {
       resolve(
         allAnime.data.forEach(anime => {
           const card = document.createElement("anime-card");
-          $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2")
-          $(card).attr("id", anime.mal_id)
+          $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
           card.datas = {
+            id: anime.mal_id,
             img_src: anime.images.jpg.image_url,
             title: anime.title,
             score: anime.score
