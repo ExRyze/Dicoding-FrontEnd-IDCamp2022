@@ -1,7 +1,7 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./style/style.css";
+import "./css/style.css";
 import $ from "jquery";
-import "./components.js";
+import "./js/components.js";
 
 async function getAnime() {
   try {
