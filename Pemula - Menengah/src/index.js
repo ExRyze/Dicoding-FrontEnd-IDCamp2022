@@ -1,7 +1,4 @@
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./css/style.css";
-import $ from "jquery";
-import "./js/components.js";
+import "./app.js";
 
 async function getAnime() {
   try {
@@ -27,5 +24,4 @@ async function getAnime() {
     console.log(error);
   }
 }
-
 getAnime();
