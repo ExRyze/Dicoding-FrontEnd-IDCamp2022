@@ -27,13 +27,27 @@ class animeCard extends HTMLElement {
 };
 customElements.define("anime-card", animeCard);
 
+class animetitle extends HTMLElement {
+  set titles(titleset) {
+    this._title = titleset;
+    this.create();
+  }
+
+  create() {
+    this.innerHTML = `
+    <p><strong>${this._title.type}:</strong> ${this._title.title}</p>
+    `;
+  }
+}
+customElements.define("anime-title", animetitle);
+
 class navbar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <nav class="navbar bg-primary px-5 d-flex justify-content-between align-items-center text-white mb-4">
       <a href="index.html" class="text-white d-flex text-decoration-none">
         <img src="img/logo_ex_red.png" alt="logo ex" height="50">
-        <h2 class="h2">Ex-BD</h2>
+        <h2 class="h2 ms-4">Ex-BD</h2>
       </a>
       <div class="d-flex">
         <a href="about.html" class="text-white text-decoration-none">

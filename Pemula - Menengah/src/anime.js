@@ -10,12 +10,32 @@ async function getAnime() {
     const allAnime = await response.json();
     let cards = new Promise(function (resolve) {
       resolve(
-        console.log(allAnime)
+        $(".anime-image").attr("src", allAnime.data.images.jpg.image_url),
+        allAnime.data.titles.forEach(title => {
+          const _title = document.createElement("anime-title")
+          _title.titles = {
+            type: title.type,
+            title: title.title
+          };
+          $(".anime-titles").append(_title);
+        }),
+        $(".anime-title").text(allAnime.data.title),
+        $(".anime-score").text(allAnime.data.score),
+        $(".anime-scored").text(allAnime.data.scored_by.toLocaleString('en-US')+" Users"),
+        $(".anime-rank").text("#"+allAnime.data.rank.toLocaleString('en-US')),
+        $(".anime-popularity").text("#"+allAnime.data.popularity.toLocaleString('en-US')),
+        $(".anime-members").text(allAnime.data.members.toLocaleString('en-US')),
+        $(".anime-type").text(allAnime.data.type),
+        $(".anime-season").text(allAnime.data.season),
+        $(".anime-year").text(allAnime.data.year),
+        $(".anime-synopsis").text(allAnime.data.synopsis),
+        $(".anime-background").text(allAnime.data.background)
       );
     });
     await cards;
   } catch (error) {
     console.log(error);
+    // window.location.href = "404.html";
   }
 }
 getAnime();
