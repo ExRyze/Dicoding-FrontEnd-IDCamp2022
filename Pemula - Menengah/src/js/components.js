@@ -27,7 +27,7 @@ class animeCard extends HTMLElement {
 };
 customElements.define("anime-card", animeCard);
 
-class animetitle extends HTMLElement {
+class animeinfo extends HTMLElement {
   set titles(titleset) {
     this._title = titleset;
     this.create();
@@ -39,7 +39,7 @@ class animetitle extends HTMLElement {
     `;
   }
 }
-customElements.define("anime-title", animetitle);
+customElements.define("anime-info", animeinfo);
 
 class navbar extends HTMLElement {
   connectedCallback() {
