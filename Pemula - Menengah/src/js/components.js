@@ -1,3 +1,21 @@
+class navbar extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+    <nav class="navbar bg-primary px-5 d-flex justify-content-between align-items-center text-white mb-4">
+      <a role="button" class="text-white d-flex text-decoration-none" onclick="window.location.href = 'index.html#'; location.reload();">
+        <img src="img/logo_ex_red.png" alt="logo ex" height="50">
+        <h2 class="h2 ms-4">Ex-BD</h2>
+      </a>
+      <div class="d-flex">
+        <a role="button" class="text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
+          About
+        </a>
+      </div>
+    </nav>
+    `;
+  }
+}
+
 class animeCard extends HTMLElement {
   set datas(dataset) {
     this._dataset = dataset;
@@ -26,7 +44,6 @@ class animeCard extends HTMLElement {
     `;
   }
 };
-customElements.define("anime-card", animeCard);
 
 class animeinfo extends HTMLElement {
   set titles(titleset) {
@@ -40,26 +57,27 @@ class animeinfo extends HTMLElement {
     `;
   }
 }
-customElements.define("anime-info", animeinfo);
 
-class navbar extends HTMLElement {
-  connectedCallback() {
+class animegenre extends HTMLElement {
+  set genres(genreset) {
+    this._genreset = genreset;
+    this.create();
+  }
+
+  constructor() {
+    super();
+    this.addEventListener("click", function () {
+      window.location.href = `index.html#genre:${this._genreset.name}`;
+      location.reload();
+    })
+  }
+
+  create() {
     this.innerHTML = `
-    <nav class="navbar bg-primary px-5 d-flex justify-content-between align-items-center text-white mb-4">
-      <a role="button" class="text-white d-flex text-decoration-none" onclick="window.location.href = 'index.html#'; location.reload();">
-        <img src="img/logo_ex_red.png" alt="logo ex" height="50">
-        <h2 class="h2 ms-4">Ex-BD</h2>
-      </a>
-      <div class="d-flex">
-        <a role="button" class="text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
-          About
-        </a>
-      </div>
-    </nav>
+    <button class="me-2 text-white btn bg-secondary">${this._genreset.name}</button>
     `;
   }
 }
-customElements.define("nav-bar", navbar);
 
 class footerbar extends HTMLElement {
   connectedCallback() {
@@ -72,4 +90,9 @@ class footerbar extends HTMLElement {
     `;
   }
 }
+
+customElements.define("nav-bar", navbar);
+customElements.define("anime-card", animeCard);
+customElements.define("anime-info", animeinfo);
+customElements.define("anime-genre", animegenre);
 customElements.define("footer-bar", footerbar);
