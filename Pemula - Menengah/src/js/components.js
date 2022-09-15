@@ -7,7 +7,8 @@ class animeCard extends HTMLElement {
   constructor() {
     super();
     this.addEventListener("click", function () {
-      window.location.href = `anime.html#${this._dataset.id}`;
+      window.location.href = `index.html#anime:${this._dataset.id}`;
+      location.reload();
     })
   }
 
@@ -45,12 +46,12 @@ class navbar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <nav class="navbar bg-primary px-5 d-flex justify-content-between align-items-center text-white mb-4">
-      <a href="index.html" class="text-white d-flex text-decoration-none">
+      <a role="button" class="text-white d-flex text-decoration-none" onclick="window.location.href = 'index.html#'; location.reload();">
         <img src="img/logo_ex_red.png" alt="logo ex" height="50">
         <h2 class="h2 ms-4">Ex-BD</h2>
       </a>
       <div class="d-flex">
-        <a href="about.html" class="text-white text-decoration-none">
+        <a role="button" class="text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
           About
         </a>
       </div>
