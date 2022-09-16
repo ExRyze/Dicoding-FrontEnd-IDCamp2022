@@ -3,15 +3,76 @@ import "./css/style.css";
 import $ from "jquery";
 import "./js/components.js";
 
-const hash = window.location.hash;
-if(hash.includes("#anime:")) {
-  $("body").html(``);
-  async function getAnime() {
+class Anime {
+  constructor() {
+    const hash = window.location.hash;
+    if(hash.includes("#anime:")) {
+      $("body").html("")
+      this.getDataAnime(`/${hash.substring(7)}`);
+    } else if(hash.includes("#genre:")) {
+      let genre = hash.substring(7).replace(/%20/g, " ");
+      if(genre.includes(",")) {genre = genre.split(",");}
+      else {genre = [genre]};
+      this.getAllAnimeBy(genre, hash.slice(1, 6));
+    } else if(hash.includes("#type:")) {
+      let type = hash.substring(6).replace(/%20/g, " ");
+      if(type.includes(",")) {type = type.split(",");}
+      else {type = [type]};
+      this.getAllAnimeBy(type, hash.slice(1, 5));
+    } else if(hash.includes("#season:")) {
+      let season = hash.substring(8).replace(/%20/g, " ");
+      if(season.includes(",")) {season = season.split(",");}
+      else {season = [season]};
+      this.getAllAnimeBy(season, hash.slice(1, 7));
+    } else if(hash.includes("#year:")) {
+      let year = hash.substring(6).replace(/%20/g, " ");
+      if(year.includes(",")) {year = year.split(",");}
+      else {year = [year]};
+      this.getAllAnimeBy(year, hash.slice(1, 5));
+    } else if(hash === "#about") {
+      this.about();
+    } else {
+      this.getAllAnime();
+    }
+  }
+
+  async fetch(id = "") {
+    const response = await fetch(`https://api.jikan.moe/v4/anime${id}`);
+    return response.json();
+  }
+
+  async getAllAnime() {
     try {
-      let id = hash.substring(7);
-      const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
-      const allAnime = await response.json();
-      let {producers, licensors, studios, genres, titles} = allAnime.data;
+      const allAnime = await this.fetch();
+      this.cards(allAnime.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getAllAnimeBy(any, key) {
+    try {
+      const allAnime = await this.fetch();
+      let animeBy = [];
+      if(key === "genre") {animeBy = this.Genre(allAnime, any);} 
+      else if (key === "type") {animeBy = this.Type(allAnime, any);}
+      else if (key === "season") {animeBy = this.Season(allAnime, any);}
+      else if (key === "year") {animeBy = this.Year(allAnime, any);}
+      this.cards(animeBy, key, any);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getDataAnime(id) {
+    try {
+      const anime = await this.fetch(id);
+      let {producers, licensors, studios, genres, titles} = anime.data;
+      const names = [
+        {title: "Producers", name: this.forName(producers)}, 
+        {title: "Licensors", name: this.forName(licensors)}, 
+        {title: "Studios", name: this.forName(studios)}
+      ];
       $("body").html(`
       <nav-bar class="sticky-top"></nav-bar>
       <main class="container-fluid d-flex justify-content-center">
@@ -85,7 +146,8 @@ if(hash.includes("#anime:")) {
       <footer-bar></footer-bar>`);
       let cards = new Promise(function (resolve) {
         resolve(
-          $(".anime-image").attr("src", allAnime.data.images.jpg.image_url),
+          $(".anime-title").text(anime.data.title),
+          $(".anime-image").attr("src", anime.data.images.jpg.image_url),
           titles.forEach(title => {
             const _title = document.createElement("anime-info")
             _title.titles = {
@@ -94,48 +156,30 @@ if(hash.includes("#anime:")) {
             };
             $(".anime-titles").append(_title);
           }),
-          producers.forEach(name => {
+          names.forEach(name => {
             const _name = document.createElement("anime-info")
             _name.titles = {
-              type: "Producers",
+              type: name.title,
               title: name.name
             };
             $(".anime-informs").append(_name);
           }),
-          licensors.forEach(name => {
-            const _name = document.createElement("anime-info")
-            _name.titles = {
-              type: "Licensors",
-              title: name.name
-            };
-            $(".anime-informs").append(_name);
-          }),
-          studios.forEach(name => {
-            const _name = document.createElement("anime-info")
-            _name.titles = {
-              type: "Studios",
-              title: name.name
-            };
-            $(".anime-informs").append(_name);
-          }),
-          $(".anime-title").text(allAnime.data.title),
           genres.forEach(genre => {
             const _genre = document.createElement("anime-genre")
             _genre.genres = {name: genre.name};
             $(".anime-genres").append(_genre);
           }),
-          $(".anime-score").text(allAnime.data.score),
-          $(".anime-scored").text(allAnime.data.scored_by.toLocaleString('en-US')+" Users"),
-          $(".anime-rank").text("#"+allAnime.data.rank.toLocaleString('en-US')),
-          $(".anime-popularity").text("#"+allAnime.data.popularity.toLocaleString('en-US')),
-          $(".anime-members").text(allAnime.data.members.toLocaleString('en-US')),
+          $(".anime-score").text(anime.data.score),
+          $(".anime-scored").text(anime.data.scored_by.toLocaleString('en-US')+" Users"),
+          $(".anime-rank").text("#"+anime.data.rank.toLocaleString('en-US')),
+          $(".anime-popularity").text("#"+anime.data.popularity.toLocaleString('en-US')),
+          $(".anime-members").text(anime.data.members.toLocaleString('en-US')),
           $(".type-season-year").html(`
-          <a role="button" onclick="window.location.href='index.html#type:${allAnime.data.type}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${allAnime.data.type}</a>
-          <a role="button" onclick="window.location.href='index.html#season:${allAnime.data.season}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${allAnime.data.season}</a>
-          <a role="button" onclick="window.location.href='index.html#year:${allAnime.data.year}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${allAnime.data.year}</a>`),
-          $(".anime-synopsis").text(allAnime.data.synopsis),
-          $(".anime-background").text(allAnime.data.background),
-          // $("a.anime-year").setAttribute("onclick", `window.location.href='index.html#season:${allAnime.data.year}';location.reload();`)
+          <a role="button" onclick="window.location.href='index.html#type:${anime.data.type}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${anime.data.type}</a>
+          <a role="button" onclick="window.location.href='index.html#season:${anime.data.season}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${anime.data.season}</a>
+          <a role="button" onclick="window.location.href='index.html#year:${anime.data.year}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${anime.data.year}</a>`),
+          $(".anime-synopsis").text(anime.data.synopsis),
+          $(".anime-background").text(anime.data.background),
         );
       });
       await cards;
@@ -143,204 +187,101 @@ if(hash.includes("#anime:")) {
       window.location.href = "index.html#";
       location.reload();
     }
-  };
-  getAnime();
-} else if (hash.includes("#genre:")) {
-  async function getAnimeByGenre() {
-    try {
-      let genre = hash.substring(7).replace(/%20/g, " ");
-      if(genre.includes(",")) {genre = genre.split(",");}
-      else {genre = [genre]}
-      $(".anime-header .h4").text(`Genre - ${genre.join(", ")}`);
-      const response = await fetch("https://api.jikan.moe/v4/anime");
-      const allAnime = await response.json();
-      let animeByGenre = [];
-      allAnime.data.forEach(anime => {
-        anime.genres.forEach(genres => {
-          genre.forEach(_genre => {
-            if(genres.name === _genre) {
-              if(!animeByGenre.includes(anime)) {
-                animeByGenre.push(anime);
-              }
-            }
-          })
-        })
-      })
-      let cards = new Promise(function (resolve) {
-        resolve(
-          animeByGenre.forEach(anime => {
-            const card = document.createElement("anime-card");
-            $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
-            card.datas = {
-              id: anime.mal_id,
-              img_src: anime.images.jpg.image_url,
-              title: anime.title,
-              score: anime.score
-            };
-            $(".display").append(card);
-          })
-        );
-      });
-      await cards;
-    } catch (error) {
-      console.log(error);
-    }
   }
-  getAnimeByGenre();
-} else if (hash.includes("#season:")) {
-  async function getAnimeByseason() {
-    try {
-      let season = hash.substring(8).replace(/%20/g, " ");
-      if(season.includes(",")) {season = season.split(",");}
-      else {season = [season]};
-      $(".anime-header .h4").text(`Season - ${season.join(", ")}`);
-      const response = await fetch("https://api.jikan.moe/v4/anime");
-      const allAnime = await response.json();
-      let animeByseason = [];
-      allAnime.data.forEach(anime => {
-        season.forEach(_season => {
-          if(anime.season === _season) {
-            if(!animeByseason.includes(anime)) {
-              animeByseason.push(anime);
-            }
-          }
+
+  cards(dataAnime, key = "Dashboard", any = ["List Anime"]) {
+    new Promise(function (resolve) {
+      resolve(
+        $(".anime-header .h4").text(`${key} - ${any.join(", ")}`),
+        dataAnime.forEach(anime => {
+          const card = document.createElement("anime-card");
+          $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
+          card.datas = {
+            id: anime.mal_id,
+            img_src: anime.images.jpg.image_url,
+            title: anime.title,
+            score: anime.score
+          };
+          $(".display").append(card);
         })
-      })
-      let cards = new Promise(function (resolve) {
-        resolve(
-          animeByseason.forEach(anime => {
-            const card = document.createElement("anime-card");
-            $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
-            card.datas = {
-              id: anime.mal_id,
-              img_src: anime.images.jpg.image_url,
-              title: anime.title,
-              score: anime.score
-            };
-            $(".display").append(card);
-          })
-        );
-      });
-      await cards;
-    } catch (error) {
-      console.log(error);
-    }
+      );
+    });
   }
-  getAnimeByseason();
-} else if (hash.includes("#type:")) {
-  async function getAnimeBytype() {
-    try {
-      let type = hash.substring(6).replace(/%20/g, " ");
-      if(type.includes(",")) {type = type.split(",");}
-      else {type = [type]};
-      $(".anime-header .h4").text(`Type - ${type.join(", ")}`);
-      const response = await fetch("https://api.jikan.moe/v4/anime");
-      const allAnime = await response.json();
-      let animeBytype = [];
-      allAnime.data.forEach(anime => {
-        type.forEach(_type => {
-          if(anime.type === _type) {
-            if(!animeBytype.includes(anime)) {
-              animeBytype.push(anime);
-            }
-          }
-        })
-      })
-      let cards = new Promise(function (resolve) {
-        resolve(
-          animeBytype.forEach(anime => {
-            const card = document.createElement("anime-card");
-            $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
-            card.datas = {
-              id: anime.mal_id,
-              img_src: anime.images.jpg.image_url,
-              title: anime.title,
-              score: anime.score
-            };
-            $(".display").append(card);
-          })
-        );
-      });
-      await cards;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  getAnimeBytype();
-} else if (hash.includes("#year:")) {
-  async function getAnimeByyear() {
-    try {
-      let year = hash.substring(6);
-      if(year.includes(",")) {year = year.split(",");}
-      else {year = [year]};
-      $(".anime-header .h4").text(`Year - ${year.join(", ")}`);
-      const response = await fetch("https://api.jikan.moe/v4/anime");
-      const allAnime = await response.json();
-      let animeByyear = [];
-      allAnime.data.forEach(anime => {
-        year.forEach(_year => {
-          console.log(anime.year);
-          console.log(_year);
-          if(anime.year === parseInt(_year)) {
-            console.log("anime");
-            if(!animeByyear.includes(anime)) {
-              animeByyear.push(anime);
-            }
-          }
-        })
-      })
-      let cards = new Promise(function (resolve) {
-        resolve(
-          animeByyear.forEach(anime => {
-            const card = document.createElement("anime-card");
-            $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
-            card.datas = {
-              id: anime.mal_id,
-              img_src: anime.images.jpg.image_url,
-              title: anime.title,
-              score: anime.score
-            };
-            $(".display").append(card);
-          })
-        );
-      });
-      await cards;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  getAnimeByyear();
-} else if (hash === "#about") {
+
+  about() {
   $("body").html(`
   <nav-bar class="sticky-top"></nav-bar>
   <main class="container-fluid d-flex justify-content-center">
   </main>
   <footer-bar></footer-bar>`);
-} else {
-  async function getAnime() {
-    try {
-      $(".anime-header .h4").text(`Dashboard - List Anim.join(", ")e`);
-      const response = await fetch("https://api.jikan.moe/v4/anime");
-      const allAnime = await response.json();
-      let cards = new Promise(function (resolve) {
-        resolve(
-          allAnime.data.forEach(anime => {
-            const card = document.createElement("anime-card");
-            $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
-            card.datas = {
-              id: anime.mal_id,
-              img_src: anime.images.jpg.image_url,
-              title: anime.title,
-              score: anime.score
-            };
-            $(".display").append(card);
-          })
-        );
-      });
-      await cards;
-    } catch (error) {
-      console.log(error);
-    }
   }
-  getAnime();
+
+  forName(dataset) {
+    let result = [];
+    dataset.forEach(data => {
+      result.push(data.name)
+    });
+    return result.join(", ");
+  }
+
+  Genre(allAnime, _genre) {
+    let animeBy = [];
+    allAnime.data.forEach(anime => {
+      anime.genres.forEach(genre => {
+        _genre.forEach(_genre => {
+          if(genre.name === _genre) {
+            if(!animeBy.includes(anime)) {
+              animeBy.push(anime);
+            }
+          }
+        })
+      })
+    })
+    return animeBy;
+  }
+
+  Season(allAnime, _season) {
+    let animeBy = [];
+    allAnime.data.forEach(anime => {
+      _season.forEach(_season => {
+        if(anime.season === _season) {
+          if(!animeBy.includes(anime)) {
+            animeBy.push(anime);
+          }
+        }
+      })
+    })
+    return animeBy;
+  }
+
+  Type(allAnime, _type) {
+    let animeBy = [];
+    allAnime.data.forEach(anime => {
+      _type.forEach(_type => {
+        if(anime.type === _type) {
+          if(!animeBy.includes(anime)) {
+            animeBy.push(anime);
+          }
+        }
+      })
+    })
+    return animeBy;
+  }
+
+  Year(allAnime, _year) {
+    let animeBy = [];
+    allAnime.data.forEach(anime => {
+      _year.forEach(_year => {
+        if(anime.year === parseInt(_year)) {
+          console.log("anime");
+          if(!animeBy.includes(anime)) {
+            animeBy.push(anime);
+          }
+        }
+      })
+    })
+    return animeBy;
+  }
+
 }
+new Anime();
