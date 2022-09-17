@@ -124,7 +124,6 @@ class Anime {
                   </div>
                 </div>
                 <div class="d-flex type-season-year flex-wrap mb-4">
-                  
                 </div>
                 <div class="mb-4">
                   <h5 class="h5 pb-2 border-bottom-2 border-edge">Genres</h5>
@@ -175,9 +174,9 @@ class Anime {
           $(".anime-popularity").text("#"+anime.data.popularity.toLocaleString('en-US')),
           $(".anime-members").text(anime.data.members.toLocaleString('en-US')),
           $(".type-season-year").html(`
-          <a role="button" onclick="window.location.href='index.html#type:${anime.data.type}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${anime.data.type}</a>
-          <a role="button" onclick="window.location.href='index.html#season:${anime.data.season}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${anime.data.season}</a>
-          <a role="button" onclick="window.location.href='index.html#year:${anime.data.year}';location.reload();" class="text-decoration-none px-1 border-right-1 border-edge">${anime.data.year}</a>`),
+          <a role="button" onclick="window.location.href='index.html#type:${anime.data.type}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.type}</a>
+          <a role="button" onclick="window.location.href='index.html#season:${anime.data.season}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.season}</a>
+          <a role="button" onclick="window.location.href='index.html#year:${anime.data.year}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.year}</a>`),
           $(".anime-synopsis").text(anime.data.synopsis),
           $(".anime-background").text(anime.data.background),
         );
@@ -200,7 +199,11 @@ class Anime {
             id: anime.mal_id,
             img_src: anime.images.jpg.image_url,
             title: anime.title,
-            score: anime.score
+            type: anime.type,
+            season: anime.season,
+            year: anime.year,
+            score: anime.score,
+            synopsis: anime.synopsis
           };
           $(".display").append(card);
         })

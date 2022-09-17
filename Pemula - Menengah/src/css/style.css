@@ -10,6 +10,7 @@
   --dark: #222831;
   --dark-secondary: #393E46;
 }
+.h-fit {height: fit-content;}
 .text-primary {color: var(--primary)!important;}
 .text-secondary {color: var(--secondary)!important;}
 .text-edge {color: var(--edge)!important;}
@@ -75,8 +76,11 @@
 .border-light {border-color: var(--light)!important;}
 .border-dark {border-color: var(--dark)!important;}
 .border-dark-secondary {border-color: var(--dark-secondary)!important;}
-.text-left {text-align: left;}
-.text-right {text-align: right;}
-.text-center {text-align: center;}
-.text-justify {text-align: justify;}
-.text-indent {text-indent: 2rem;}
+.text-left {text-align: left!important;}
+.text-right {text-align: right!important;}
+.text-center {text-align: center!important;}
+.text-justify {text-align: justify!important;}
+.text-indent {text-indent: 2rem!important;}
+.scrollbar-none::-webkit-scrollbar{width: 0!important;}
+anime-card .card-body {height: 250px!important;}
+.z-index-navbar {z-index: 1090;}

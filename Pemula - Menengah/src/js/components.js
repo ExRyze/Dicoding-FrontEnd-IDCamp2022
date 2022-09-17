@@ -32,12 +32,22 @@ class animeCard extends HTMLElement {
 
   create() {
     this.innerHTML = `
-    <div class="card bg-secondary w-100 text-white" role="button">
-      <div class="card-body d-flex">
-        <img src="${this._dataset.img_src}" class="col-md-3 col-4">
-        <div class="col-md-9 col-8 ps-3 d-flex flex-column">
-          <h3 class="h3">${this._dataset.title}</h3>
-          <h6 class="h6">Score: ${this._dataset.score}<h6>
+    <div class="card card-body bg-white w-100 text-dark" role="button">
+      <div class="d-flex overflow-hidden">
+        <img src="${this._dataset.img_src}" class="col-md-3 col-4 h-fit align-self-center">
+        <div class="col-md-9 col-8 ps-3 overflow-auto scrollbar-none align-self-stretch position-relative">
+          <div class="sticky-top bg-white">
+            <h3 class="h3 py-2">${this._dataset.title}</h3>
+            <div class="d-flex justify-content-between pb-2">
+              <div class="d-flex flex-wrap type-season-year">
+                <p role="button" class="px-1 border-right-1 m-0 border-edge">${this._dataset.type}</p>
+                <p role="button" class="px-1 border-right-1 m-0 border-edge">${this._dataset.season}</p>
+                <p role="button" class="px-1 border-right-1 m-0 border-edge">${this._dataset.year}</p>
+              </div>
+              <h6 class="h6 m-0">Score: ${this._dataset.score}</h6>
+            </div>
+          </div>
+          <p class="text-indent text-justify">${this._dataset.synopsis}</p>
         </div>
       </div>
     </div>
