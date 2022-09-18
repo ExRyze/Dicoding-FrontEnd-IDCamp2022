@@ -6,6 +6,8 @@ class navbar extends HTMLElement {
         <img src="img/logo_ex_red.png" alt="logo ex" height="50">
         <h2 class="h2 ms-4">Ex-BD</h2>
       </a>
+      <input type="text" class="search ms-4 me-2" placeholder="Title, Genre, ...">
+      <input type="submit" class="search-submit btn bg-white text-dark me-auto" value="Submit">
       <div class="d-flex">
         <a role="button" class="text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
           About

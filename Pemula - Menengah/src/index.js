@@ -7,7 +7,7 @@ class Anime {
   constructor() {
     const hash = window.location.hash;
     if(hash.includes("#anime:")) {
-      $("body").html("")
+      $("main").html("")
       this.getDataAnime(`/${hash.substring(7)}`);
     } else if(hash.includes("#genre:")) {
       let genre = hash.substring(7).replace(/%20/g, " ");
@@ -29,10 +29,28 @@ class Anime {
       if(year.includes(",")) {year = year.split(",");}
       else {year = [year]};
       this.getAllAnimeBy(year, hash.slice(1, 5));
+    } else if(hash.includes("#search:")) {
+      let vals = hash.substring(8).replace(/%20/g, " ");
+      if(vals.includes(", ")) {vals = vals.split(", ");}
+      else {vals = [vals]};
+      this.search(vals, hash.slice(1, 7));
     } else if(hash === "#about") {
       this.about();
     } else {
       this.getAllAnime();
+    }
+    document.querySelector(".search-submit").addEventListener("click", () => {
+      window.location.href = `index.html#search:${$(".search").val()}`; location.reload();
+    })
+  }
+
+  async search(vals, key) {
+    try {
+      const allAnime = await this.fetch();
+      this.cardsBySearch(allAnime.data, key, vals);
+      $(".search").val(vals.join(", "))
+    } catch(error) {
+      console.log(error);
     }
   }
 
@@ -73,9 +91,7 @@ class Anime {
         {title: "Licensors", name: this.forName(licensors)}, 
         {title: "Studios", name: this.forName(studios)}
       ];
-      $("body").html(`
-      <nav-bar class="sticky-top"></nav-bar>
-      <main class="container-fluid d-flex justify-content-center">
+      $("main").html(`
         <div class="col-md-10 col-12">
           <div class="card bg-light">
             <div class="card-header"><h4 class="h4 anime-title"></h4></div>
@@ -140,9 +156,7 @@ class Anime {
               </div>
             </div>
           </div>
-        </div>
-      </main>
-      <footer-bar></footer-bar>`);
+        </div>`);
       let cards = new Promise(function (resolve) {
         resolve(
           $(".anime-title").text(anime.data.title),
@@ -188,6 +202,28 @@ class Anime {
     }
   }
 
+  cardsBySearch(dataAnime, key = "Dashboard", any = ['']) {
+    let _allAnime = [];
+    dataAnime.forEach(anime => {
+      any.forEach(_any => {
+        if((anime.title || '').includes(_any) || (anime.type || '').includes(_any) || (anime.season || '').includes(_any) || (`${anime.year}` || '').includes(_any)) {
+          if(!_allAnime.includes(anime)) {
+            _allAnime.push(anime);
+          }
+        }
+        anime.genres.forEach(_genre => {
+          if((_genre.name || '').includes(_any)) {
+            if(!_allAnime.includes(anime)) {
+              _allAnime.push(anime);
+            }
+          }
+        })
+      })
+    })
+    console.log(_allAnime)
+    this.cards(_allAnime, key, any)
+  }
+
   cards(dataAnime, key = "Dashboard", any = ["List Anime"]) {
     new Promise(function (resolve) {
       resolve(
@@ -195,6 +231,7 @@ class Anime {
         dataAnime.forEach(anime => {
           const card = document.createElement("anime-card");
           $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
+          $(card).attr("id", anime.mal_id);
           card.datas = {
             id: anime.mal_id,
             img_src: anime.images.jpg.image_url,
