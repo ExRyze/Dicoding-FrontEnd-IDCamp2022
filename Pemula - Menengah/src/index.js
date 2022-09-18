@@ -6,27 +6,28 @@ import "./js/components.js";
 class Anime {
   constructor() {
     const hash = window.location.hash;
+    let profile = this.getProfile();
     if(hash.includes("#anime:")) {
       $("main").html("")
       this.getDataAnime(`/${hash.substring(7)}`);
     } else if(hash.includes("#genre:")) {
       let genre = hash.substring(7).replace(/%20/g, " ");
-      if(genre.includes(",")) {genre = genre.split(",");}
+      if(genre.includes(", ")) {genre = genre.split(", ");}
       else {genre = [genre]};
       this.getAllAnimeBy(genre, hash.slice(1, 6));
     } else if(hash.includes("#type:")) {
       let type = hash.substring(6).replace(/%20/g, " ");
-      if(type.includes(",")) {type = type.split(",");}
+      if(type.includes(", ")) {type = type.split(", ");}
       else {type = [type]};
       this.getAllAnimeBy(type, hash.slice(1, 5));
     } else if(hash.includes("#season:")) {
       let season = hash.substring(8).replace(/%20/g, " ");
-      if(season.includes(",")) {season = season.split(",");}
+      if(season.includes(", ")) {season = season.split(", ");}
       else {season = [season]};
       this.getAllAnimeBy(season, hash.slice(1, 7));
     } else if(hash.includes("#year:")) {
       let year = hash.substring(6).replace(/%20/g, " ");
-      if(year.includes(",")) {year = year.split(",");}
+      if(year.includes(", ")) {year = year.split(", ");}
       else {year = [year]};
       this.getAllAnimeBy(year, hash.slice(1, 5));
     } else if(hash.includes("#search:")) {
@@ -34,6 +35,8 @@ class Anime {
       if(vals.includes(", ")) {vals = vals.split(", ");}
       else {vals = [vals]};
       this.search(vals, hash.slice(1, 7));
+    } else if(hash === "#profile") {
+      this.setProfile(profile);
     } else if(hash === "#about") {
       this.about();
     } else {
@@ -42,6 +45,50 @@ class Anime {
     document.querySelector(".search-submit").addEventListener("click", () => {
       window.location.href = `index.html#search:${$(".search").val()}`; location.reload();
     })
+  }
+
+  getProfile() {
+    const localKey = "Ex-BD";
+    let profile;
+    if (typeof(Storage) !== 'undefined') {
+      if (localStorage.getItem(localKey) === null) {
+        const initProfile = {
+          name: "lilgru",
+          list: []
+        }
+        localStorage.setItem(localKey, JSON.stringify(initProfile))
+      }
+      profile = JSON.parse(localStorage.getItem(localKey));
+    }
+    $("nav-bar .profile").html(`
+    ${profile.name}
+    <img src="img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
+    `)
+    return profile;
+  }
+
+  async setProfile(profile) {
+    try {
+      const allAnime = await this.fetch();
+      $(`
+      <div class="col-md-10 col-12 mb-4">
+        <div class="card bg-white">
+          <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
+          <div class="card-body d-flex flex-wrap">
+            <div class="col-4 d-flex justify-content-center">
+              <img src="img/lilgru.jpg" class="w-50 p-4 border-5 border-edge rounded-circle">
+            </div>
+            <div class="col-8">
+              <h6 class="h6">Username:</h6>
+              <h4 class="h4">${profile.name}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      `).insertBefore($(".list"));
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   async search(vals, key) {
@@ -265,7 +312,7 @@ class Anime {
     allAnime.data.forEach(anime => {
       anime.genres.forEach(genre => {
         _genre.forEach(_genre => {
-          if((genre.name || '').toLowerCase().includes(genre.toLowerCase())) {
+          if((genre.name || '').toLowerCase().includes(_genre.toLowerCase())) {
             if(!animeBy.includes(anime)) {
               animeBy.push(anime);
             }

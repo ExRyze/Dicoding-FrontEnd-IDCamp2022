@@ -2,16 +2,18 @@ class navbar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <nav class="navbar bg-primary px-5 d-flex justify-content-between align-items-center text-white mb-4">
-      <a role="button" class="text-white d-flex text-decoration-none" onclick="window.location.href = 'index.html#'; location.reload();">
+      <a role="button" class="text-white d-flex align-items-center text-decoration-none" onclick="window.location.href = 'index.html#'; location.reload();">
         <img src="img/logo_ex_red.png" alt="logo ex" height="50">
         <h2 class="h2 ms-4">Ex-BD</h2>
       </a>
       <input type="text" class="search ms-4 me-2" placeholder="Title, Genre, ...">
-      <input type="submit" class="search-submit btn bg-white text-dark me-auto" value="Submit">
-      <div class="d-flex">
-        <a role="button" class="text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
+      <input type="submit" class="search-submit btn bg-white text-dark me-auto" value="Search">
+      <div>
+        <a role="button" class="p-3 text-white text-decoration-none" onclick="window.location.href = 'index.html#rank'">Rank</a>
+        <a role="button" class="p-3 text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
           About
         </a>
+        <a role="button" class="p-3 text-white text-decoration-none profile" onclick="window.location.href = 'index.html#profile'"></a>
       </div>
     </nav>
     `;
