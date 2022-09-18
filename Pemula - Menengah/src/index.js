@@ -206,13 +206,13 @@ class Anime {
     let _allAnime = [];
     dataAnime.forEach(anime => {
       any.forEach(_any => {
-        if((anime.title || '').includes(_any) || (anime.type || '').includes(_any) || (anime.season || '').includes(_any) || (`${anime.year}` || '').includes(_any)) {
+        if((anime.title || '').toLowerCase().includes(_any.toLowerCase()) || (anime.type || '').toLowerCase().includes(_any.toLowerCase()) || (anime.season || '').toLowerCase().includes(_any.toLowerCase()) || (`${anime.year}` || '').toLowerCase().includes(_any.toLowerCase())) {
           if(!_allAnime.includes(anime)) {
             _allAnime.push(anime);
           }
         }
         anime.genres.forEach(_genre => {
-          if((_genre.name || '').includes(_any)) {
+          if((_genre.name || '').toLowerCase().includes(_any.toLowerCase())) {
             if(!_allAnime.includes(anime)) {
               _allAnime.push(anime);
             }
@@ -249,11 +249,7 @@ class Anime {
   }
 
   about() {
-  $("body").html(`
-  <nav-bar class="sticky-top"></nav-bar>
-  <main class="container-fluid d-flex justify-content-center">
-  </main>
-  <footer-bar></footer-bar>`);
+  $("main").html(``);
   }
 
   forName(dataset) {
@@ -269,7 +265,7 @@ class Anime {
     allAnime.data.forEach(anime => {
       anime.genres.forEach(genre => {
         _genre.forEach(_genre => {
-          if(genre.name === _genre) {
+          if((genre.name || '').toLowerCase().includes(genre.toLowerCase())) {
             if(!animeBy.includes(anime)) {
               animeBy.push(anime);
             }
@@ -284,7 +280,7 @@ class Anime {
     let animeBy = [];
     allAnime.data.forEach(anime => {
       _season.forEach(_season => {
-        if(anime.season === _season) {
+        if((anime.season || '').toLowerCase().includes(_season.toLowerCase())) {
           if(!animeBy.includes(anime)) {
             animeBy.push(anime);
           }
@@ -298,7 +294,7 @@ class Anime {
     let animeBy = [];
     allAnime.data.forEach(anime => {
       _type.forEach(_type => {
-        if(anime.type === _type) {
+        if((anime.type || '').toLowerCase().includes(_type.toLowerCase())) {
           if(!animeBy.includes(anime)) {
             animeBy.push(anime);
           }
@@ -312,7 +308,7 @@ class Anime {
     let animeBy = [];
     allAnime.data.forEach(anime => {
       _year.forEach(_year => {
-        if(anime.year === parseInt(_year)) {
+        if((`${anime.year}` || '').toLowerCase().includes(_year.toLowerCase())) {
           console.log("anime");
           if(!animeBy.includes(anime)) {
             animeBy.push(anime);
