@@ -6,7 +6,8 @@ import "./js/components.js";
 class Anime {
   constructor() {
     const hash = window.location.hash;
-    let profile = this.getProfile();
+    const localKey = "Ex-BD";
+    let profile = this.getProfile(localKey);
     if(hash.includes("#anime:")) {
       $("main").html("")
       this.getDataAnime(`/${hash.substring(7)}`);
@@ -36,7 +37,7 @@ class Anime {
       else {vals = [vals]};
       this.search(vals, hash.slice(1, 7));
     } else if(hash === "#profile") {
-      this.setProfile(profile);
+      this.setProfile(profile, localKey);
     } else if(hash === "#about") {
       this.about();
     } else {
@@ -47,27 +48,28 @@ class Anime {
     })
   }
 
-  getProfile() {
-    const localKey = "Ex-BD";
+  getProfile(key) {
     let profile;
     if (typeof(Storage) !== 'undefined') {
-      if (localStorage.getItem(localKey) === null) {
+      if (localStorage.getItem(key) === null) {
         const initProfile = {
           name: "lilgru",
+          password: "Hmmm",
+          address: "I dont know where you live, sorry...",
           list: []
         }
-        localStorage.setItem(localKey, JSON.stringify(initProfile))
+        localStorage.setItem(key, JSON.stringify(initProfile))
       }
-      profile = JSON.parse(localStorage.getItem(localKey));
+      profile = JSON.parse(localStorage.getItem(key));
     }
     $("nav-bar .profile").html(`
-    ${profile.name}
+    ${(profile.name || '')}
     <img src="img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
     `)
     return profile;
   }
 
-  async setProfile(profile) {
+  async setProfile(profile, key) {
     try {
       const allAnime = await this.fetch();
       $(`
@@ -76,19 +78,38 @@ class Anime {
           <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
           <div class="card-body d-flex flex-wrap">
             <div class="col-4 d-flex justify-content-center">
-              <img src="img/lilgru.jpg" class="w-50 p-4 border-5 border-edge rounded-circle">
+              <img src="img/lilgru.jpg" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
             </div>
-            <div class="col-8">
-              <h6 class="h6">Username:</h6>
-              <h4 class="h4">${profile.name}</h4>
+            <div class="col-8 d-flex flex-column">
+              <label for="Username"><h6 class="h6 mb-0 mt-1">Username:</h6></label>
+              <input name="Username" type="text" class="mb-2 rounded username" value="${(profile.name || '')}">
+              <label for="Password"><h6 class="h6 mb-0 mt-1">Password:</h6></label>
+              <input name="Password" type="password" class="mb-2 rounded password" value="${(profile.password || '')}">
+              <label for="Address"><h6 class="h6 mb-0 mt-1">Address:</h6></label>
+              <input name="Address" type="text" class="mb-2 rounded address" value="${(profile.address || '')}">
+              <input type="submit" class="update-profile btn bg-secondary text-white ms-auto" value="Update">
             </div>
           </div>
         </div>
       </div>
       `).insertBefore($(".list"));
+      document.querySelector(".update-profile").addEventListener("click", () => {
+        this.updateProfile(profile, key);
+      })
     } catch(error) {
       console.log(error);
     }
+  }
+
+  updateProfile(profile, key) {
+    let name = $(".username").val();
+    let pass = $(".password").val();
+    let addr = $(".address").val();
+    profile.name = name;
+    profile.password = pass;
+    profile.address = addr;
+    localStorage.setItem(key, JSON.stringify(profile));
+    location.reload();
   }
 
   async search(vals, key) {

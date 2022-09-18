@@ -6,14 +6,14 @@ class navbar extends HTMLElement {
         <img src="img/logo_ex_red.png" alt="logo ex" height="50">
         <h2 class="h2 ms-4">Ex-BD</h2>
       </a>
-      <input type="text" class="search ms-4 me-2" placeholder="Title, Genre, ...">
+      <input type="text" class="search ms-4 me-2 rounded" placeholder="Title, Genre, ...">
       <input type="submit" class="search-submit btn bg-white text-dark me-auto" value="Search">
       <div>
         <a role="button" class="p-3 text-white text-decoration-none" onclick="window.location.href = 'index.html#rank'">Rank</a>
         <a role="button" class="p-3 text-white text-decoration-none" onclick="window.location.href = 'index.html#about'; location.reload();">
           About
         </a>
-        <a role="button" class="p-3 text-white text-decoration-none profile" onclick="window.location.href = 'index.html#profile'"></a>
+        <a role="button" class="p-3 text-white text-decoration-none profile" onclick="window.location.href = 'index.html#profile';location.reload();"></a>
       </div>
     </nav>
     `;
