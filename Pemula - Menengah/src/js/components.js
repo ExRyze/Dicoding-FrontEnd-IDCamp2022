@@ -40,7 +40,7 @@ class animeCard extends HTMLElement {
       <div class="d-flex overflow-hidden">
         <img src="${this._dataset.img_src}" class="col-md-3 col-4 h-fit align-self-center">
         <div class="col-md-9 col-8 ps-3 overflow-auto scrollbar-none align-self-stretch position-relative">
-          <div class="sticky-top bg-white">
+          <div class="sticky-top bg-white anime-card-header">
             <h3 class="h3 py-2">${this._dataset.title}</h3>
             <div class="d-flex justify-content-between pb-2">
               <div class="d-flex flex-wrap type-season-year">

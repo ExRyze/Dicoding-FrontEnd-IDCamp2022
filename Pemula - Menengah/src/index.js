@@ -10,116 +10,42 @@ class Anime {
     let profile = this.getProfile(localKey);
     if(hash.includes("#anime:")) {
       $("main").html("")
-      this.getDataAnime(`/${hash.substring(7)}`);
+      this.getDataAnime(`/${hash.substring(7)}`, profile, localKey);
     } else if(hash.includes("#genre:")) {
       let genre = hash.substring(7).replace(/%20/g, " ");
       if(genre.includes(", ")) {genre = genre.split(", ");}
       else {genre = [genre]};
-      this.getAllAnimeBy(genre, hash.slice(1, 6));
+      this.getAllAnimeBy(genre, hash.slice(1, 6), profile.list);
     } else if(hash.includes("#type:")) {
       let type = hash.substring(6).replace(/%20/g, " ");
       if(type.includes(", ")) {type = type.split(", ");}
       else {type = [type]};
-      this.getAllAnimeBy(type, hash.slice(1, 5));
+      this.getAllAnimeBy(type, hash.slice(1, 5), profile.list);
     } else if(hash.includes("#season:")) {
       let season = hash.substring(8).replace(/%20/g, " ");
       if(season.includes(", ")) {season = season.split(", ");}
       else {season = [season]};
-      this.getAllAnimeBy(season, hash.slice(1, 7));
+      this.getAllAnimeBy(season, hash.slice(1, 7), profile.list);
     } else if(hash.includes("#year:")) {
       let year = hash.substring(6).replace(/%20/g, " ");
       if(year.includes(", ")) {year = year.split(", ");}
       else {year = [year]};
-      this.getAllAnimeBy(year, hash.slice(1, 5));
+      this.getAllAnimeBy(year, hash.slice(1, 5), profile.list);
     } else if(hash.includes("#search:")) {
       let vals = hash.substring(8).replace(/%20/g, " ");
       if(vals.includes(", ")) {vals = vals.split(", ");}
       else {vals = [vals]};
-      this.search(vals, hash.slice(1, 7));
+      this.search(profile.list, vals, hash.slice(1, 7),);
     } else if(hash === "#profile") {
       this.setProfile(profile, localKey);
     } else if(hash === "#about") {
       this.about();
     } else {
-      this.getAllAnime();
+      this.getAllAnime(profile.list);
     }
     document.querySelector(".search-submit").addEventListener("click", () => {
       window.location.href = `index.html#search:${$(".search").val()}`; location.reload();
     })
-  }
-
-  getProfile(key) {
-    let profile;
-    if (typeof(Storage) !== 'undefined') {
-      if (localStorage.getItem(key) === null) {
-        const initProfile = {
-          name: "lilgru",
-          password: "Hmmm",
-          address: "I dont know where you live, sorry...",
-          list: []
-        }
-        localStorage.setItem(key, JSON.stringify(initProfile))
-      }
-      profile = JSON.parse(localStorage.getItem(key));
-    }
-    $("nav-bar .profile").html(`
-    ${(profile.name || '')}
-    <img src="img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
-    `)
-    return profile;
-  }
-
-  async setProfile(profile, key) {
-    try {
-      const allAnime = await this.fetch();
-      $(`
-      <div class="col-md-10 col-12 mb-4">
-        <div class="card bg-white">
-          <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
-          <div class="card-body d-flex flex-wrap">
-            <div class="col-4 d-flex justify-content-center">
-              <img src="img/lilgru.jpg" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
-            </div>
-            <div class="col-8 d-flex flex-column">
-              <label for="Username"><h6 class="h6 mb-0 mt-1">Username:</h6></label>
-              <input name="Username" type="text" class="mb-2 rounded username" value="${(profile.name || '')}">
-              <label for="Password"><h6 class="h6 mb-0 mt-1">Password:</h6></label>
-              <input name="Password" type="password" class="mb-2 rounded password" value="${(profile.password || '')}">
-              <label for="Address"><h6 class="h6 mb-0 mt-1">Address:</h6></label>
-              <input name="Address" type="text" class="mb-2 rounded address" value="${(profile.address || '')}">
-              <input type="submit" class="update-profile btn bg-secondary text-white ms-auto" value="Update">
-            </div>
-          </div>
-        </div>
-      </div>
-      `).insertBefore($(".list"));
-      document.querySelector(".update-profile").addEventListener("click", () => {
-        this.updateProfile(profile, key);
-      })
-    } catch(error) {
-      console.log(error);
-    }
-  }
-
-  updateProfile(profile, key) {
-    let name = $(".username").val();
-    let pass = $(".password").val();
-    let addr = $(".address").val();
-    profile.name = name;
-    profile.password = pass;
-    profile.address = addr;
-    localStorage.setItem(key, JSON.stringify(profile));
-    location.reload();
-  }
-
-  async search(vals, key) {
-    try {
-      const allAnime = await this.fetch();
-      this.cardsBySearch(allAnime.data, key, vals);
-      $(".search").val(vals.join(", "))
-    } catch(error) {
-      console.log(error);
-    }
   }
 
   async fetch(id = "") {
@@ -127,16 +53,26 @@ class Anime {
     return response.json();
   }
 
-  async getAllAnime() {
+  async search(list, vals, key) {
     try {
       const allAnime = await this.fetch();
-      this.cards(allAnime.data);
+      this.cardsBySearch(list, allAnime.data, key, vals);
+      $(".search").val(vals.join(", "))
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  async getAllAnime(list) {
+    try {
+      const allAnime = await this.fetch();
+      this.cards(list, allAnime.data);
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getAllAnimeBy(any, key) {
+  async getAllAnimeBy(any, key, list) {
     try {
       const allAnime = await this.fetch();
       let animeBy = [];
@@ -144,13 +80,14 @@ class Anime {
       else if (key === "type") {animeBy = this.Type(allAnime, any);}
       else if (key === "season") {animeBy = this.Season(allAnime, any);}
       else if (key === "year") {animeBy = this.Year(allAnime, any);}
-      this.cards(animeBy, key, any);
+      else if (key === "profile") {animeBy = this.Favorite(allAnime, any);}
+      this.cards(list, animeBy, key, any);
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getDataAnime(id) {
+  async getDataAnime(id, profile, key) {
     try {
       const anime = await this.fetch(id);
       let {producers, licensors, studios, genres, titles} = anime.data;
@@ -162,7 +99,7 @@ class Anime {
       $("main").html(`
         <div class="col-md-10 col-12">
           <div class="card bg-light">
-            <div class="card-header"><h4 class="h4 anime-title"></h4></div>
+            <div class="card-header d-flex justify-content-between align-items-center"><h4 class="h4 anime-title"></h4><img role="button" src="img/star-white.png" class="h-fit fav" width="30"></div>
             <div class="card-body d-flex flex-wrap">
               <div class="col-4 d-flex flex-column justify-content-start align-items-center px-3">
                 <img class="w-50 mx-auto anime-image mb-4">
@@ -225,6 +162,8 @@ class Anime {
             </div>
           </div>
         </div>`);
+      this.addFav(profile, id.slice(1), key);
+      this.checkFavData(profile.list, id.slice(1));
       let cards = new Promise(function (resolve) {
         resolve(
           $(".anime-title").text(anime.data.title),
@@ -265,12 +204,13 @@ class Anime {
       });
       await cards;
     } catch (error) {
-      window.location.href = "index.html#";
-      location.reload();
+      console.log(error);
+      // window.location.href = "index.html#";
+      // location.reload();
     }
   }
 
-  cardsBySearch(dataAnime, key = "Dashboard", any = ['']) {
+  cardsBySearch(list, dataAnime, key = "Dashboard", any = ['']) {
     let _allAnime = [];
     dataAnime.forEach(anime => {
       any.forEach(_any => {
@@ -289,10 +229,10 @@ class Anime {
       })
     })
     console.log(_allAnime)
-    this.cards(_allAnime, key, any)
+    this.cards(list, _allAnime, key, any)
   }
 
-  cards(dataAnime, key = "Dashboard", any = ["List Anime"]) {
+  cards(list, dataAnime, key = "Dashboard", any = ["List Anime"]) {
     new Promise(function (resolve) {
       resolve(
         $(".anime-header .h4").text(`${key} - ${any.join(", ")}`),
@@ -311,9 +251,107 @@ class Anime {
             synopsis: anime.synopsis
           };
           $(".display").append(card);
-        })
+        }),
       );
     });
+    this.checkFavList(list);
+    if(key === "profile") {$(".anime-header .h4").text(`${key} - Favorites`);}
+  }
+  
+  getProfile(key) {
+    let profile;
+    if (typeof(Storage) !== 'undefined') {
+      if (localStorage.getItem(key) === null) {
+        const initProfile = {
+          name: "lilgru",
+          password: "Hmmm",
+          address: "I dont know where you live, sorry...",
+          list: []
+        }
+        localStorage.setItem(key, JSON.stringify(initProfile))
+      }
+      profile = JSON.parse(localStorage.getItem(key));
+    }
+    $("nav-bar .profile").html(`
+    ${(profile.name || '')}
+    <img src="img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
+    `)
+    return profile;
+  }
+
+  async setProfile(profile, key) {
+    try {
+      $(`
+      <div class="col-md-10 col-12 mb-4">
+        <div class="card bg-white">
+          <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
+          <div class="card-body d-flex flex-wrap">
+            <div class="col-4 d-flex justify-content-center">
+              <img src="img/lilgru.jpg" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
+            </div>
+            <div class="col-8 d-flex flex-column">
+              <label for="Username"><h6 class="h6 mb-0 mt-1">Username:</h6></label>
+              <input name="Username" type="text" class="mb-2 rounded username" value="${(profile.name || '')}">
+              <label for="Password"><h6 class="h6 mb-0 mt-1">Password:</h6></label>
+              <input name="Password" type="password" class="mb-2 rounded password" value="${(profile.password || '')}">
+              <label for="Address"><h6 class="h6 mb-0 mt-1">Address:</h6></label>
+              <input name="Address" type="text" class="mb-2 rounded address" value="${(profile.address || '')}">
+              <input type="submit" class="update-profile btn bg-secondary text-white ms-auto" value="Update">
+            </div>
+          </div>
+        </div>
+      </div>
+      `).insertBefore($(".list"));
+      document.querySelector(".update-profile").addEventListener("click", () => {
+        this.updateProfile(profile, key);
+      })
+      this.getAllAnimeBy(profile.list, "profile", profile.list)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  updateProfile(profile, key) {
+    let name = $(".username").val();
+    let pass = $(".password").val();
+    let addr = $(".address").val();
+    profile.name = name;
+    profile.password = pass;
+    profile.address = addr;
+    localStorage.setItem(key, JSON.stringify(profile));
+    location.reload();
+  }
+
+  addFav(profile, id, key) {
+    document.querySelector(".card-header .fav").addEventListener("click", () => {
+      if((profile.list).includes(id)) {
+        profile.list = (profile.list).filter(item => !id.includes(item));
+      } else {
+        (profile.list).push(id);
+        (profile.list).sort(function(a, b){return a - b});
+      }
+      localStorage.setItem(key, JSON.stringify(profile));
+      this.checkFavData(profile.list, id)
+    })
+  }
+
+  checkFavList(list) {
+    $("anime-card").each((index) => {
+      if(list.includes($("anime-card")[index].id)){
+        $("anime-card")[index].querySelector(".card.card-body").classList.add("bg-warning");
+        $("anime-card")[index].querySelector(".card.card-body").classList.remove("bg-white");
+        $("anime-card")[index].querySelector(".anime-card-header").classList.add("bg-warning");
+        $("anime-card")[index].querySelector(".anime-card-header").classList.remove("bg-white");
+      }
+    })
+  }
+
+  checkFavData(list, _id) {
+    if(list.includes(_id)) {
+      $(".card-header .fav").attr("src", "img/star-yellow.png");
+    } else {
+      $(".card-header .fav").attr("src", "img/star-white.png");
+    }
   }
 
   about() {
@@ -377,7 +415,20 @@ class Anime {
     allAnime.data.forEach(anime => {
       _year.forEach(_year => {
         if((`${anime.year}` || '').toLowerCase().includes(_year.toLowerCase())) {
-          console.log("anime");
+          if(!animeBy.includes(anime)) {
+            animeBy.push(anime);
+          }
+        }
+      })
+    })
+    return animeBy;
+  }
+
+  Favorite(allAnime, _list) {
+    let animeBy = [];
+    allAnime.data.forEach(anime => {
+      _list.forEach(_list => {
+        if((`${_list}`).toLowerCase().includes(`${anime.mal_id}`.toLowerCase())) {
           if(!animeBy.includes(anime)) {
             animeBy.push(anime);
           }
