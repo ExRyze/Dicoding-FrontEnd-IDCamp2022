@@ -9,6 +9,7 @@ import "./js/components.js";
 
 class Anime {
   constructor() {
+    $("link[type='image/x-icon']").attr("href", `${ex_bd}`)
     $("nav .logo").attr("src", `${ex_bd}`)
     const hash = window.location.hash;
     const localKey = "Ex-BD";
