@@ -14,7 +14,6 @@ module.exports = {
       filename: 'index.html'
     })
   ],
-  mode: "production",
   devServer: {
     client: {
       overlay: {
@@ -33,18 +32,6 @@ module.exports = {
           },
           {
             loader: "css-loader"
-          }
-        ]
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
           }
         ]
       },
