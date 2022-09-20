@@ -437,6 +437,5 @@ class Anime {
     })
     return animeBy;
   }
-
 }
 new Anime();
