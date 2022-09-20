@@ -1,3 +1,7 @@
+import lilgru from "./img/lilgru.jpg";
+import ex_bd from "./img/ex_bd.png";
+import wStar from "./img/wStar.png";
+import yStar from "./img/yStar.png";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
 import $ from "jquery";
@@ -5,6 +9,7 @@ import "./js/components.js";
 
 class Anime {
   constructor() {
+    $("nav .logo").attr("src", `${ex_bd}`)
     const hash = window.location.hash;
     const localKey = "Ex-BD";
     let profile = this.getProfile(localKey);
@@ -99,7 +104,7 @@ class Anime {
       $("main").html(`
         <div class="col-md-10 col-12">
           <div class="card bg-light">
-            <div class="card-header d-flex justify-content-between align-items-center"><h4 class="h4 anime-title"></h4><img role="button" src="img/star-white.png" class="h-fit fav" width="30"></div>
+            <div class="card-header d-flex justify-content-between align-items-center"><h4 class="h4 anime-title"></h4><img role="button" src="${wStar}" class="h-fit fav" width="30"></div>
             <div class="card-body d-flex flex-wrap">
               <div class="col-4 d-flex flex-column justify-content-start align-items-center px-3">
                 <img class="w-50 mx-auto anime-image mb-4">
@@ -274,7 +279,7 @@ class Anime {
     }
     $("nav-bar .profile").html(`
     ${(profile.name || '')}
-    <img src="../img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
+    <img src="${lilgru}" height="30" class="ms-2 rounded-circle">
     `)
     return profile;
   }
@@ -287,7 +292,7 @@ class Anime {
           <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
           <div class="card-body d-flex flex-wrap">
             <div class="col-4 d-flex justify-content-center">
-              <img src="../img/lilgru.jpg" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
+              <img src="${lilgru}" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
             </div>
             <div class="col-8 d-flex flex-column">
               <label for="Username"><h6 class="h6 mb-0 mt-1">Username:</h6></label>
@@ -348,9 +353,9 @@ class Anime {
 
   checkFavData(list, _id) {
     if(list.includes(_id)) {
-      $(".card-header .fav").attr("src", "img/star-yellow.png");
+      $(".card-header .fav").attr("src", `${yStar}`);
     } else {
-      $(".card-header .fav").attr("src", "img/star-white.png");
+      $(".card-header .fav").attr("src", `${wStar}`);
     }
   }
 
