@@ -50,7 +50,7 @@ class Anime {
       this.getAllAnime(profile.list);
     }
     document.querySelector(".search-submit").addEventListener("click", () => {
-      window.location.href = `index.html#search:${$(".search").val()}`; location.reload();
+      window.location.href = `#search:${$(".search").val()}`; location.reload();
     })
   }
 
@@ -201,9 +201,9 @@ class Anime {
           $(".anime-popularity").text("#"+anime.data.popularity.toLocaleString('en-US')),
           $(".anime-members").text(anime.data.members.toLocaleString('en-US')),
           $(".type-season-year").html(`
-          <a role="button" onclick="window.location.href='index.html#type:${anime.data.type}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.type}</a>
-          <a role="button" onclick="window.location.href='index.html#season:${anime.data.season}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.season}</a>
-          <a role="button" onclick="window.location.href='index.html#year:${anime.data.year}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.year}</a>`),
+          <a role="button" onclick="window.location.href='#type:${anime.data.type}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.type}</a>
+          <a role="button" onclick="window.location.href='#season:${anime.data.season}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.season}</a>
+          <a role="button" onclick="window.location.href='#year:${anime.data.year}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.year}</a>`),
           $(".anime-synopsis").text(anime.data.synopsis),
           $(".anime-background").text(anime.data.background),
         );
@@ -211,7 +211,7 @@ class Anime {
       await cards;
     } catch (error) {
       console.log(error);
-      // window.location.href = "index.html#";
+      // window.location.href = "#";
       // location.reload();
     }
   }
