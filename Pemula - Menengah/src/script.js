@@ -274,7 +274,7 @@ class Anime {
     }
     $("nav-bar .profile").html(`
     ${(profile.name || '')}
-    <img src="img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
+    <img src="../img/lilgru.jpg" height="30" class="ms-2 rounded-circle">
     `)
     return profile;
   }
@@ -287,7 +287,7 @@ class Anime {
           <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
           <div class="card-body d-flex flex-wrap">
             <div class="col-4 d-flex justify-content-center">
-              <img src="img/lilgru.jpg" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
+              <img src="../img/lilgru.jpg" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
             </div>
             <div class="col-8 d-flex flex-column">
               <label for="Username"><h6 class="h6 mb-0 mt-1">Username:</h6></label>

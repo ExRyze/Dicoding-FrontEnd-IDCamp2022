@@ -1,12 +1,19 @@
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/script.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html'
+    })
+  ],
   mode: "production",
   module: {
     rules: [
