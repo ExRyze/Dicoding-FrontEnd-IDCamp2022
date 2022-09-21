@@ -1,0 +1,21 @@
+module.exports = {
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "indent": ["error", 2],
+        "no-multi-spaces": ["error"]
+        // "max-len": [1, 120, 2, {ignoreComments: true}]
+    }
+}

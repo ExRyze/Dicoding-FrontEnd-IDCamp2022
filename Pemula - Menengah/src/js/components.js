@@ -28,7 +28,7 @@ class animeCard extends HTMLElement {
 
   constructor() {
     super();
-    this.addEventListener("click", function () {
+    this.addEventListener('click', function () {
       window.location.href = `#anime:${this._dataset.id}`;
       location.reload();
     })
