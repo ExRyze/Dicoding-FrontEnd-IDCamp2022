@@ -361,7 +361,10 @@ class Anime {
   }
 
   about() {
-    $('main').html('');
+    $('main').html(`
+    <div class="card-body col-12 bg-secondary">
+    </div>
+    `);
   }
 
   forName(dataset) {
