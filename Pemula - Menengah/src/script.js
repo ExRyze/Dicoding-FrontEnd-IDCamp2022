@@ -364,17 +364,17 @@ class Anime {
     $('main').addClass('px-4');
     $('main').html(`
     <div class="card d-flex card-body col-12 bg-secondary">
-      <div class="card d-flex flex-row card-body col-12 bg-secondary text-white">
-        <div class="col-8 p-4 pe-3">
+      <div class="card d-flex flex-lg-row flex-column card-body col-12 bg-secondary text-white">
+        <div class="col-12 col-lg-7 col-xl-8 p-4 pe-lg-3">
           <h3 class="border-bottom-4 border-edge pb-4 ps-3 mb-3">About</h3>
-          <p class="text-indent text-justify">Ex-BD adalah website untuk menampilkan list anime dari sebuah API. Web ini adalah hasil dari pembelajaran <strong>Dicoding</strong> dalam program <strong>IDCamp2022</strong>. Saya harap web ini sudah memenuhi kriteria yang di minta. <u>Dari API yang saya gunakan, tidak dapat menambahkan, mengubah ataupun mendelete data, jadi hanya bisa menampilkan.</u> Masih banyak hal yang saya ingin tambahkan ke dalam website ini, tetapi karena keterbatasan pengetahuan akan caranya dan juga waktu, serta saya sedang menjalankan PKL, jadi saya mencukupkan sampai sini. Jika ada kekurangan, kesalahan ataupun cara yang lebih efisien tolong diberitahu. Sekian dari saya, Terima kasih.</p>
-          <div class="col-3 d-flex text-center flex-column">
+          <p class="text-indent px-2 px-sm-4 text-justify">Ex-BD adalah website untuk menampilkan list anime dari sebuah API. Web ini adalah hasil dari pembelajaran <strong>Dicoding</strong> dalam program <strong>IDCamp2022</strong>. Saya harap web ini sudah memenuhi kriteria yang di minta. <u>Dari API yang saya gunakan, tidak dapat menambahkan, mengubah ataupun mendelete data, jadi hanya bisa menampilkan.</u> Masih banyak hal yang saya ingin tambahkan ke dalam website ini, tetapi karena keterbatasan pengetahuan akan caranya dan juga waktu, serta saya sedang menjalankan PKL, jadi saya mencukupkan sampai sini. Jika ada kekurangan, kesalahan ataupun cara yang lebih efisien tolong diberitahu. Sekian dari saya, Terima kasih.</p>
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-flex text-center flex-column">
             <p class="px-4 mb-2">Best regards,</p>
             <a href="https://github.com/ExRyze" class="text-white text-decoration-none"><strong>ExRyze</strong></a>
           </div>
         </div>
-        <div class="col-4 p-4 ps-3 d-flex justify-content-center">
-          <img src="file:///D:/IDCamp%202022/Front-End%20Web/Pemula%20-%20Menengah/dist/asset/images/ex_bd.png" class="w-75 p-4 h-fit">
+        <div class="col-12 col-lg-5 col-xl-4 p-4 ps-lg-3 d-flex justify-content-center align-items-center">
+          <img src="file:///D:/IDCamp%202022/Front-End%20Web/Pemula%20-%20Menengah/dist/asset/images/ex_bd.png" class="col-11 col-xl-9 p-4 h-fit">
         </div>
       </div>
     </div>
