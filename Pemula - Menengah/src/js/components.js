@@ -31,7 +31,7 @@ class animeCard extends HTMLElement {
     this.addEventListener('click', function () {
       window.location.href = `#anime:${this._dataset.id}`;
       location.reload();
-    })
+    });
   }
 
   create() {
@@ -57,7 +57,7 @@ class animeCard extends HTMLElement {
     </div>
     `;
   }
-};
+}
 
 class animeinfo extends HTMLElement {
   set titles(titleset) {
@@ -80,10 +80,10 @@ class animegenre extends HTMLElement {
 
   constructor() {
     super();
-    this.addEventListener("click", function () {
+    this.addEventListener('click', function () {
       window.location.href = `#genre:${this._genreset.name}`;
       location.reload();
-    })
+    });
   }
 
   create() {
@@ -105,8 +105,8 @@ class footerbar extends HTMLElement {
   }
 }
 
-customElements.define("nav-bar", navbar);
-customElements.define("anime-card", animeCard);
-customElements.define("anime-info", animeinfo);
-customElements.define("anime-genre", animegenre);
-customElements.define("footer-bar", footerbar);
+customElements.define('nav-bar', navbar);
+customElements.define('anime-card', animeCard);
+customElements.define('anime-info', animeinfo);
+customElements.define('anime-genre', animegenre);
+customElements.define('footer-bar', footerbar);

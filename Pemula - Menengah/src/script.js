@@ -1,60 +1,60 @@
-import lilgru from "./img/lilgru.jpg";
-import ex_bd from "./img/ex_bd.png";
-import wStar from "./img/wStar.png";
-import yStar from "./img/yStar.png";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./css/style.css";
-import $ from "jquery";
-import "./js/components.js";
+import lilgru from './img/lilgru.jpg';
+import ex_bd from './img/ex_bd.png';
+import wStar from './img/wStar.png';
+import yStar from './img/yStar.png';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './css/style.css';
+import $ from 'jquery';
+import './js/components.js';
 
 class Anime {
   constructor() {
-    $("link[type='image/x-icon']").attr("href", `${ex_bd}`)
-    $("nav .logo").attr("src", `${ex_bd}`)
+    $('link[type="image/x-icon"]').attr('href', `${ex_bd}`);
+    $('nav .logo').attr('src', `${ex_bd}`);
     const hash = window.location.hash;
-    const localKey = "Ex-BD";
+    const localKey = 'Ex-BD';
     let profile = this.getProfile(localKey);
-    if(hash.includes("#anime:")) {
-      $("main").html("")
+    if(hash.includes('#anime:')) {
+      $('main').html('');
       this.getDataAnime(`/${hash.substring(7)}`, profile, localKey);
-    } else if(hash.includes("#genre:")) {
-      let genre = hash.substring(7).replace(/%20/g, " ");
-      if(genre.includes(", ")) {genre = genre.split(", ");}
-      else {genre = [genre]};
+    } else if(hash.includes('#genre:')) {
+      let genre = hash.substring(7).replace(/%20/g, ' ');
+      if(genre.includes(', ')) {genre = genre.split(', ');}
+      else {genre = [genre];}
       this.getAllAnimeBy(genre, hash.slice(1, 6), profile.list);
-    } else if(hash.includes("#type:")) {
-      let type = hash.substring(6).replace(/%20/g, " ");
-      if(type.includes(", ")) {type = type.split(", ");}
-      else {type = [type]};
+    } else if(hash.includes('#type:')) {
+      let type = hash.substring(6).replace(/%20/g, ' ');
+      if(type.includes(', ')) {type = type.split(', ');}
+      else {type = [type];}
       this.getAllAnimeBy(type, hash.slice(1, 5), profile.list);
-    } else if(hash.includes("#season:")) {
-      let season = hash.substring(8).replace(/%20/g, " ");
-      if(season.includes(", ")) {season = season.split(", ");}
-      else {season = [season]};
+    } else if(hash.includes('#season:')) {
+      let season = hash.substring(8).replace(/%20/g, ' ');
+      if(season.includes(', ')) {season = season.split(', ');}
+      else {season = [season];}
       this.getAllAnimeBy(season, hash.slice(1, 7), profile.list);
-    } else if(hash.includes("#year:")) {
-      let year = hash.substring(6).replace(/%20/g, " ");
-      if(year.includes(", ")) {year = year.split(", ");}
-      else {year = [year]};
+    } else if(hash.includes('#year:')) {
+      let year = hash.substring(6).replace(/%20/g, ' ');
+      if(year.includes(', ')) {year = year.split(', ');}
+      else {year = [year];}
       this.getAllAnimeBy(year, hash.slice(1, 5), profile.list);
-    } else if(hash.includes("#search:")) {
-      let vals = hash.substring(8).replace(/%20/g, " ");
-      if(vals.includes(", ")) {vals = vals.split(", ");}
-      else {vals = [vals]};
+    } else if(hash.includes('#search:')) {
+      let vals = hash.substring(8).replace(/%20/g, ' ');
+      if(vals.includes(', ')) {vals = vals.split(', ');}
+      else {vals = [vals];}
       this.search(profile.list, vals, hash.slice(1, 7),);
-    } else if(hash === "#profile") {
+    } else if(hash === '#profile') {
       this.setProfile(profile, localKey);
-    } else if(hash === "#about") {
+    } else if(hash === '#about') {
       this.about();
     } else {
       this.getAllAnime(profile.list);
     }
-    document.querySelector(".search-submit").addEventListener("click", () => {
-      window.location.href = `#search:${$(".search").val()}`; location.reload();
-    })
+    document.querySelector('.search-submit').addEventListener('click', () => {
+      window.location.href = `#search:${$('.search').val()}`; location.reload();
+    });
   }
 
-  async fetch(id = "") {
+  async fetch(id = '') {
     const response = await fetch(`https://api.jikan.moe/v4/anime${id}`);
     return response.json();
   }
@@ -63,7 +63,7 @@ class Anime {
     try {
       const allAnime = await this.fetch();
       this.cardsBySearch(list, allAnime.data, key, vals);
-      $(".search").val(vals.join(", "))
+      $('.search').val(vals.join(', '));
     } catch(error) {
       console.log(error);
     }
@@ -82,11 +82,11 @@ class Anime {
     try {
       const allAnime = await this.fetch();
       let animeBy = [];
-      if(key === "genre") {animeBy = this.Genre(allAnime, any);} 
-      else if (key === "type") {animeBy = this.Type(allAnime, any);}
-      else if (key === "season") {animeBy = this.Season(allAnime, any);}
-      else if (key === "year") {animeBy = this.Year(allAnime, any);}
-      else if (key === "profile") {animeBy = this.Favorite(allAnime, any);}
+      if(key === 'genre') {animeBy = this.Genre(allAnime, any);} 
+      else if (key === 'type') {animeBy = this.Type(allAnime, any);}
+      else if (key === 'season') {animeBy = this.Season(allAnime, any);}
+      else if (key === 'year') {animeBy = this.Year(allAnime, any);}
+      else if (key === 'profile') {animeBy = this.Favorite(allAnime, any);}
       this.cards(list, animeBy, key, any);
     } catch (error) {
       console.log(error);
@@ -98,11 +98,11 @@ class Anime {
       const anime = await this.fetch(id);
       let {producers, licensors, studios, genres, titles} = anime.data;
       const names = [
-        {title: "Producers", name: this.forName(producers)}, 
-        {title: "Licensors", name: this.forName(licensors)}, 
-        {title: "Studios", name: this.forName(studios)}
+        {title: 'Producers', name: this.forName(producers)}, 
+        {title: 'Licensors', name: this.forName(licensors)}, 
+        {title: 'Studios', name: this.forName(studios)}
       ];
-      $("main").html(`
+      $('main').html(`
         <div class="col-md-10 col-12">
           <div class="card bg-light">
             <div class="card-header d-flex justify-content-between align-items-center"><h4 class="h4 anime-title"></h4><img role="button" src="${wStar}" class="h-fit fav" width="30"></div>
@@ -172,40 +172,40 @@ class Anime {
       this.checkFavData(profile.list, id.slice(1));
       let cards = new Promise(function (resolve) {
         resolve(
-          $(".anime-title").text(anime.data.title),
-          $(".anime-image").attr("src", anime.data.images.jpg.image_url),
+          $('.anime-title').text(anime.data.title),
+          $('.anime-image').attr('src', anime.data.images.jpg.image_url),
           titles.forEach(title => {
-            const _title = document.createElement("anime-info")
+            const _title = document.createElement('anime-info');
             _title.titles = {
               type: title.type,
               title: title.title
             };
-            $(".anime-titles").append(_title);
+            $('.anime-titles').append(_title);
           }),
           names.forEach(name => {
-            const _name = document.createElement("anime-info")
+            const _name = document.createElement('anime-info');
             _name.titles = {
               type: name.title,
               title: name.name
             };
-            $(".anime-informs").append(_name);
+            $('.anime-informs').append(_name);
           }),
           genres.forEach(genre => {
-            const _genre = document.createElement("anime-genre")
+            const _genre = document.createElement('anime-genre');
             _genre.genres = {name: genre.name};
-            $(".anime-genres").append(_genre);
+            $('.anime-genres').append(_genre);
           }),
-          $(".anime-score").text(anime.data.score),
-          $(".anime-scored").text(anime.data.scored_by.toLocaleString('en-US')+" Users"),
-          $(".anime-rank").text("#"+anime.data.rank.toLocaleString('en-US')),
-          $(".anime-popularity").text("#"+anime.data.popularity.toLocaleString('en-US')),
-          $(".anime-members").text(anime.data.members.toLocaleString('en-US')),
-          $(".type-season-year").html(`
+          $('.anime-score').text(anime.data.score),
+          $('.anime-scored').text(anime.data.scored_by.toLocaleString('en-US')+' Users'),
+          $('.anime-rank').text('#'+anime.data.rank.toLocaleString('en-US')),
+          $('.anime-popularity').text('#'+anime.data.popularity.toLocaleString('en-US')),
+          $('.anime-members').text(anime.data.members.toLocaleString('en-US')),
+          $('.type-season-year').html(`
           <a role="button" onclick="window.location.href='#type:${anime.data.type}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.type}</a>
           <a role="button" onclick="window.location.href='#season:${anime.data.season}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.season}</a>
           <a role="button" onclick="window.location.href='#year:${anime.data.year}';location.reload();" class="text-secondary text-decoration-none px-1 border-right-1 border-edge">${anime.data.year}</a>`),
-          $(".anime-synopsis").text(anime.data.synopsis),
-          $(".anime-background").text(anime.data.background),
+          $('.anime-synopsis').text(anime.data.synopsis),
+          $('.anime-background').text(anime.data.background),
         );
       });
       await cards;
@@ -216,7 +216,7 @@ class Anime {
     }
   }
 
-  cardsBySearch(list, dataAnime, key = "Dashboard", any = ['']) {
+  cardsBySearch(list, dataAnime, key = 'Dashboard', any = ['']) {
     let _allAnime = [];
     dataAnime.forEach(anime => {
       any.forEach(_any => {
@@ -231,21 +231,21 @@ class Anime {
               _allAnime.push(anime);
             }
           }
-        })
-      })
-    })
-    console.log(_allAnime)
-    this.cards(list, _allAnime, key, any)
+        });
+      });
+    });
+    console.log(_allAnime);
+    this.cards(list, _allAnime, key, any);
   }
 
-  cards(list, dataAnime, key = "Dashboard", any = ["List Anime"]) {
+  cards(list, dataAnime, key = 'Dashboard', any = ['List Anime']) {
     new Promise(function (resolve) {
       resolve(
-        $(".anime-header .h4").text(`${key} - ${any.join(", ")}`),
+        $('.anime-header .h4').text(`${key} - ${any.join(', ')}`),
         dataAnime.forEach(anime => {
-          const card = document.createElement("anime-card");
-          $(card).attr("class", "col-md-6 col-sm-12 d-flex p-2");
-          $(card).attr("id", anime.mal_id);
+          const card = document.createElement('anime-card');
+          $(card).attr('class', 'col-md-6 col-sm-12 d-flex p-2');
+          $(card).attr('id', anime.mal_id);
           card.datas = {
             id: anime.mal_id,
             img_src: anime.images.jpg.image_url,
@@ -256,12 +256,12 @@ class Anime {
             score: anime.score,
             synopsis: anime.synopsis
           };
-          $(".display").append(card);
+          $('.display').append(card);
         }),
       );
     });
     this.checkFavList(list);
-    if(key === "profile") {$(".anime-header .h4").text(`${key} - Favorites`);}
+    if(key === 'profile') {$('.anime-header .h4').text(`${key} - Favorites`);}
   }
   
   getProfile(key) {
@@ -269,19 +269,19 @@ class Anime {
     if (typeof(Storage) !== 'undefined') {
       if (localStorage.getItem(key) === null) {
         const initProfile = {
-          name: "lilgru",
-          password: "Hmmm",
-          address: "I dont know where you live, sorry...",
+          name: 'lilgru',
+          password: 'Hmmm',
+          address: 'I dont know where you live, sorry...',
           list: []
-        }
-        localStorage.setItem(key, JSON.stringify(initProfile))
+        };
+        localStorage.setItem(key, JSON.stringify(initProfile));
       }
       profile = JSON.parse(localStorage.getItem(key));
     }
-    $("nav-bar .profile").html(`
+    $('nav-bar .profile').html(`
     ${(profile.name || '')}
     <img src="${lilgru}" height="30" class="ms-2 rounded-circle">
-    `)
+    `);
     return profile;
   }
 
@@ -307,20 +307,20 @@ class Anime {
           </div>
         </div>
       </div>
-      `).insertBefore($(".list"));
-      document.querySelector(".update-profile").addEventListener("click", () => {
+      `).insertBefore($('.list'));
+      document.querySelector('.update-profile').addEventListener('click', () => {
         this.updateProfile(profile, key);
-      })
-      this.getAllAnimeBy(profile.list, "profile", profile.list)
+      });
+      this.getAllAnimeBy(profile.list, 'profile', profile.list);
     } catch(error) {
       console.log(error);
     }
   }
 
   updateProfile(profile, key) {
-    let name = $(".username").val();
-    let pass = $(".password").val();
-    let addr = $(".address").val();
+    let name = $('.username').val();
+    let pass = $('.password').val();
+    let addr = $('.address').val();
     profile.name = name;
     profile.password = pass;
     profile.address = addr;
@@ -329,47 +329,47 @@ class Anime {
   }
 
   addFav(profile, id, key) {
-    document.querySelector(".card-header .fav").addEventListener("click", () => {
+    document.querySelector('.card-header .fav').addEventListener('click', () => {
       if((profile.list).includes(id)) {
         profile.list = (profile.list).filter(item => !id.includes(item));
       } else {
         (profile.list).push(id);
-        (profile.list).sort(function(a, b){return a - b});
+        (profile.list).sort(function(a, b){return a - b;});
       }
       localStorage.setItem(key, JSON.stringify(profile));
-      this.checkFavData(profile.list, id)
-    })
+      this.checkFavData(profile.list, id);
+    });
   }
 
   checkFavList(list) {
-    $("anime-card").each((index) => {
-      if(list.includes($("anime-card")[index].id)){
-        $("anime-card")[index].querySelector(".card.card-body").classList.add("bg-warning");
-        $("anime-card")[index].querySelector(".card.card-body").classList.remove("bg-white");
-        $("anime-card")[index].querySelector(".anime-card-header").classList.add("bg-warning");
-        $("anime-card")[index].querySelector(".anime-card-header").classList.remove("bg-white");
+    $('anime-card').each((index) => {
+      if(list.includes($('anime-card')[index].id)){
+        $('anime-card')[index].querySelector('.card.card-body').classList.add('bg-warning');
+        $('anime-card')[index].querySelector('.card.card-body').classList.remove('bg-white');
+        $('anime-card')[index].querySelector('.anime-card-header').classList.add('bg-warning');
+        $('anime-card')[index].querySelector('.anime-card-header').classList.remove('bg-white');
       }
-    })
+    });
   }
 
   checkFavData(list, _id) {
     if(list.includes(_id)) {
-      $(".card-header .fav").attr("src", `${yStar}`);
+      $('.card-header .fav').attr('src', `${yStar}`);
     } else {
-      $(".card-header .fav").attr("src", `${wStar}`);
+      $('.card-header .fav').attr('src', `${wStar}`);
     }
   }
 
   about() {
-  $("main").html(``);
+    $('main').html('');
   }
 
   forName(dataset) {
     let result = [];
     dataset.forEach(data => {
-      result.push(data.name)
+      result.push(data.name);
     });
-    return result.join(", ");
+    return result.join(', ');
   }
 
   Genre(allAnime, _genre) {
@@ -382,9 +382,9 @@ class Anime {
               animeBy.push(anime);
             }
           }
-        })
-      })
-    })
+        });
+      });
+    });
     return animeBy;
   }
 
@@ -397,8 +397,8 @@ class Anime {
             animeBy.push(anime);
           }
         }
-      })
-    })
+      });
+    });
     return animeBy;
   }
 
@@ -411,8 +411,8 @@ class Anime {
             animeBy.push(anime);
           }
         }
-      })
-    })
+      });
+    });
     return animeBy;
   }
 
@@ -425,8 +425,8 @@ class Anime {
             animeBy.push(anime);
           }
         }
-      })
-    })
+      });
+    });
     return animeBy;
   }
 
@@ -439,8 +439,8 @@ class Anime {
             animeBy.push(anime);
           }
         }
-      })
-    })
+      });
+    });
     return animeBy;
   }
 }
