@@ -288,14 +288,14 @@ class Anime {
   async setProfile(profile, key) {
     try {
       $(`
-      <div class="col-md-10 col-12 mb-4">
+      <div class="col-lg-10 col-12 mb-4">
         <div class="card bg-white">
           <div class="card-header profile-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
-          <div class="card-body d-flex flex-wrap">
-            <div class="col-4 d-flex justify-content-center">
-              <img src="${lilgru}" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">
+          <div class="card-body d-flex flex-wrap flex-column flex-sm-row">
+            <div class="col-12 col-sm-4 d-flex justify-content-center mb-3 mb-sm-0">
+              <img src="${lilgru}" class="col-7 col-sm-9 col-md-8 col-xl-6 h-fit p-3 p-sm-4 border-5 border-edge rounded-circle">
             </div>
-            <div class="col-8 d-flex flex-column">
+            <div class="col-12 col-sm-8 d-flex flex-column">
               <label for="Username"><h6 class="h6 mb-0 mt-1">Username:</h6></label>
               <input name="Username" type="text" class="mb-2 rounded username" value="${(profile.name || '')}">
               <label for="Password"><h6 class="h6 mb-0 mt-1">Password:</h6></label>
