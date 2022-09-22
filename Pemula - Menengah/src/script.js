@@ -290,7 +290,7 @@ class Anime {
       $(`
       <div class="col-md-10 col-12 mb-4">
         <div class="card bg-white">
-          <div class="card-header anime-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
+          <div class="card-header profile-header"><h4 class="h4 text-capitalize">My Profile</h4></div>
           <div class="card-body d-flex flex-wrap">
             <div class="col-4 d-flex justify-content-center">
               <img src="${lilgru}" class="w-50 h-fit p-4 border-5 border-edge rounded-circle">

@@ -37,12 +37,12 @@ class animeCard extends HTMLElement {
     this.innerHTML = `
     <div class="card card-body bg-white w-100 text-dark" role="button">
       <div class="d-flex overflow-hidden">
-        <img src="${this._dataset.img_src}" class="col-md-3 col-4 h-fit align-self-center">
-        <div class="col-md-9 col-8 ps-3 overflow-auto scrollbar-none align-self-stretch position-relative">
+        <img src="${this._dataset.img_src}" class="col-5 col-sm-4 col-xxl-3 h-fit align-self-center">
+        <div class="col-7 col-sm-8 col-xxl-9 ps-3 overflow-auto scrollbar-none align-self-stretch position-relative">
           <div class="sticky-top bg-white anime-card-header">
-            <h3 class="h3 py-2">${this._dataset.title}</h3>
-            <div class="d-flex justify-content-between pb-2">
-              <div class="d-flex flex-wrap type-season-year">
+            <h5 class="h5 py-2 mb-0 mb-lg-1">${this._dataset.title}</h5>
+            <div class="d-flex justify-content-between flex-wrap pb-2">
+              <div class="d-flex type-season-year">
                 <p role="button" class="px-1 border-right-1 m-0 border-edge">${this._dataset.type}</p>
                 <p role="button" class="px-1 border-right-1 m-0 border-edge">${this._dataset.season}</p>
                 <p role="button" class="px-1 border-right-1 m-0 border-edge">${this._dataset.year}</p>
