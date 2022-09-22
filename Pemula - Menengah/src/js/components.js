@@ -9,7 +9,6 @@ class navbar extends HTMLElement {
       <input type="text" class="search ms-4 me-2 rounded" placeholder="Title, Genre, ...">
       <input type="submit" class="search-submit btn bg-white text-dark me-auto" value="Search">
       <div>
-        <a role="button" class="p-3 text-white text-decoration-none" onclick="window.location.href = '#rank'">Rank</a>
         <a role="button" class="p-3 text-white text-decoration-none" onclick="window.location.href = '#about'; location.reload();">
           About
         </a>
@@ -98,7 +97,7 @@ class footerbar extends HTMLElement {
     this.innerHTML = `
     <footer class="mt-4 bg-dark text-center text-white">
       <div class="container p-3">
-        <h6 class="h6">Copyright</h6>
+        <p class="m-0">&copy; 2022 <a href="https://github.com/ExRyze" class="text-white text-decoration-none"><strong>ExRyze</strong></a> - <strong>IDCamp2022</strong> | All rights reserved</p>
       </div>
     </footer>
     `;
