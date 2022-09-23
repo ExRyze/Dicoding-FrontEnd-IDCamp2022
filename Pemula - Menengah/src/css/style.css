@@ -36,6 +36,7 @@
 .border-3 {border: 3px solid!important;}
 .border-2 {border: 2px solid!important;}
 .border-1 {border: 1px solid!important;}
+.border-0 {border: 0px solid!important;}
 .border-top-5 {border-top: 5px solid!important;}
 .border-top-4 {border-top: 4px solid!important;}
 .border-top-3 {border-top: 3px solid!important;}
@@ -85,3 +86,6 @@
 anime-card .card-body {height: 250px!important;}
 .z-index-navbar {z-index: 1090;}
 main {min-height: calc(100vh - 170px)!important;}
+@media (min-width: 576px) {
+  .border-left-sm-2 {border-left: 2px solid!important;}
+}

@@ -103,12 +103,12 @@ class Anime {
         {title: 'Studios', name: this.forName(studios)}
       ];
       $('main').html(`
-        <div class="col-md-10 col-12">
+        <div class="col-lg-10 col-12">
           <div class="card bg-light">
             <div class="card-header d-flex justify-content-between align-items-center"><h4 class="h4 anime-title"></h4><img role="button" src="${wStar}" class="h-fit fav" width="30"></div>
             <div class="card-body d-flex flex-wrap">
-              <div class="col-4 d-flex flex-column justify-content-start align-items-center px-3">
-                <img class="w-50 mx-auto anime-image mb-4">
+              <div class="col-12 col-sm-5 col-md-4 d-flex flex-column justify-content-start align-items-center px-3">
+                <img class="col-6 col-sm-8 col-xl-7 col-xxl-6 mx-auto anime-image mb-4">
                 <div class="card w-100 mb-4">
                   <div class="card-body">
                     <div>
@@ -128,10 +128,10 @@ class Anime {
                   </div>
                 </div>
               </div>
-              <div class="col-8 border-solid border-left-2 border-edge px-3">
+              <div class="col-12 col-sm-7 col-md-8 border-0 border-left-sm-2 border-edge px-3">
                 <div class="card mb-2">
                   <div class="card-body d-flex justify-content-center flex-wrap">
-                    <div class="w-auto border-right-1 border-edge px-3 d-flex flex-column text-center">
+                    <div class="w-auto px-3 d-flex flex-column text-center">
                       <h6 class="h6">Score:</h6>
                       <h4 class="h4 anime-score text-secondary"></h4>
                       <h6 class="h6 anime-scored"></h6>

@@ -1,0 +1,141 @@
+Keuangan & perbankan
+Subtitle (film - video presentasi perusahaan)
+Dokumen kesehatan
+Surat waris
+Surat kuasa (PoA)
+Surat gugatan
+Surat keterangan domisili
+Surat keterangan belum pernah menikah - surat keterangan single
+Wasiat
+Perjanjian sewa menyewa
+Surat pernyataan waris-fatwa waris
+Surat Kuasa pendirianayasan
+Akta notaris
+Curriculum vitae (CV)
+Sertifikat beragama Islam (muallaf)
+Sertifikat tanah (hak milik - hak guna bangunan - girik)
+Surat pernyataan (sp)
+Akta jual beli & sewa menyewa
+Surat pernyataan peranjian kerahasiaan (nda)
+Website
+ISO (keamanan - manufaktur - produksi - sistem manajemen - manufaktur - dimensi -fungsi)
+Sertifikasi (profesi - produk - jasa - prosedur - kebijakan - operasi - kelayakan - kesesuaian - kesehatan)
+Teks (buku pelajaran, diktat, modul)
+Tafsir
+Fotografi - atlas
+Catatan harian (jurnal/diary)
+Puisi - antalogi
+Ensklopedi - kamus
+Cergam (cerita bergambar) - novelet
+Novel- komik- nomik- dongeng
+Tugas akhir kuliah - hasil penelitian
+Buku bigrafi - autobiografi
+Buku umum
+Buku - buku islam
+Asuransi
+Transportasi
+Katering
+Hotel - apartemen - akomodasi
+Tiket
+Profider visa
+Kontrak perjanjian kerjasama keagenan
+SK menteri agama izin perjalanan haji umrah
+Sertifikat IATA - ASITA
+Tanda daftar usaha pariwisata biro perjalanan wisata
+Izin ganguan (ho/uug)
+suraat izin usaha pariwisata (tdup)
+izin sementara usaha pariwisata (isup)
+izin usaha tetap pariwisata (itup)
+purchasing order (po)/sales contract
+nomor pokok wajib pajak (npwp)
+undang-undang (uud)
+manajemen industri
+manajemen mutu (quality management)
+manajemen operasi & produksi
+Peraturan Daerah
+Peraturan Pemerintah
+Keputusan Menteri
+Perjanjian Kersama Antar Negara
+Peraturan Gubernur
+Analisa Mengenai Dampak Lingkungan
+surat Perizinan
+Rapat Umum Pemegang Saham
+Risalah Rapat/Minuta
+Akta Cerai
+Putusan Pengadilan
+Pledoi
+Kontrak Perjanjian Kerjasama (MOU)
+Surat Banding
+Dokumen Kepailitan
+Putusan Pengadilan Agama
+Invoice/Packing List Barang Ekspor
+Letter of Credit L/C
+Bill of Lading
+Air Waybill (AWB)
+Surat Keterangan Asal (SKA)
+Angka Pengenal Impor (API)
+Sertifikat Registrasi Pabean
+Surat Keterangan Berkelakuan Baik
+Surat Pindah Sekolah
+Ijazah Sementara
+Surat Kelulusan
+Daftar Nilai Sementara
+Penetapan Siswa Beasiswa
+Surat Keterangan Pendamping Ijazah
+Kelengkapan & Persyaratan Persamaan Ijazah Luar Negeri di Indonesia
+Company Profile
+Tanda Daftar Perusahaan (TDP)
+NPWP Badan Usaha
+Surat Izin Perdagangan (SIUP)
+Surat Keterangan Domisili Perusahaan
+Surat Izin Tempat Usaha (SITU)
+Surat Izin Usaha Industri (SIUI)
+Nomor Induk Berusaha (NIB)
+Dokumen Tender
+Laporan Tahunan
+Laporan Kerja
+Laporan Penelitian
+Laporan Proyek
+Laporan Audit
+Laporan Penjualan
+Laporan Tender
+
+
+// Product dari Mas Gin
+Keputusan Sirkuler
+Anggaran Dasar/Anggaran Rumah Tangga
+Perjanjian Kerja
+Perjanjian Distribusi
+Motivation Letter
+Putusan Pengadilan
+Surat Keputusan
+Kode Etik Bisnis
+Surat-menyurat
+Proposal Penawaran
+Bahan Pelatihan
+Standard Operating Procedure (SOP)
+Studi Kelayakan
+
+
+// DOKUMEN REGULAR
+Kartu tanda penduduk (KTP)
+Surat ijin mengemudi (SIM)
+Kartu Keluarga
+Akta kelahiran
+Akta Kematian
+Akta nikah (buku nikah)
+Paspor
+Ijazah (SD - SMP - SMU - Diploma S1 - S2 - S3 - STTB - SKHUN)
+Daftar nilai - transkrip nilai - raport
+Kartu pelajar
+Piagam (penghargaan - kongres - proyek - kerajaan - lainnya)
+
+
+//DOKUMEN NON REGULAR
+Perjanjian
+Addendum Perjanjian
+Memorandum of Understanding
+Akta Notariil
+Karya ilmiah - skripsi - tesis - disertasi
+Akta Pendirian
+Akta perubahan
