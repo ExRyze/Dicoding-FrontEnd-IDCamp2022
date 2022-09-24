@@ -448,7 +448,7 @@ class Anime {
     let animeBy = [];
     allAnime.data.forEach(anime => {
       _list.forEach(_list => {
-        if((`${_list}`).toLowerCase().includes(`${anime.mal_id}`.toLowerCase())) {
+        if((`${_list}`) === (`${anime.mal_id}`)) {
           if(!animeBy.includes(anime)) {
             animeBy.push(anime);
           }
