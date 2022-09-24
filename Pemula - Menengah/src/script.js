@@ -6,6 +6,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/style.css';
 import $ from 'jquery';
 import './js/components.js';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 
 class Anime {
   constructor() {
@@ -278,10 +279,6 @@ class Anime {
       }
       profile = JSON.parse(localStorage.getItem(key));
     }
-    $('nav-bar .profile').html(`
-    ${(profile.name || '')}
-    <img src="${lilgru}" height="30" class="ms-2 rounded-circle">
-    `);
     return profile;
   }
 
@@ -374,7 +371,7 @@ class Anime {
           </div>
         </div>
         <div class="col-12 col-lg-5 col-xl-4 p-4 ps-lg-3 d-flex justify-content-center align-items-center">
-          <img src="file:///D:/IDCamp%202022/Front-End%20Web/Pemula%20-%20Menengah/dist/asset/images/ex_bd.png" class="col-11 col-xl-9 p-4 h-fit">
+          <img src="${ex_bd}" class="col-11 col-xl-9 p-4 h-fit">
         </div>
       </div>
     </div>

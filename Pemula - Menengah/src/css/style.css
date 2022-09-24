@@ -85,7 +85,7 @@
 .scrollbar-none::-webkit-scrollbar{width: 0!important;}
 anime-card .card-body {height: 250px!important;}
 .z-index-navbar {z-index: 1090;}
-main {min-height: calc(100vh - 170px)!important;}
+main {min-height: calc(100vh - 180px)!important;}
 @media (min-width: 576px) {
   .border-left-sm-2 {border-left: 2px solid!important;}
 }
