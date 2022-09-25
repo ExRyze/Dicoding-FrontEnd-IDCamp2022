@@ -1,10 +1,20 @@
+import ex_bd from '../img/ex_bd.png';
+
 class navbar extends HTMLElement {
-  connectedCallback() {
+  constructor() {
+    super();
+    this.create();
+    document.querySelector('.search-submit').addEventListener('click', () => {
+      window.location.href = `#search:${document.querySelector('.search').value}`; location.reload();
+    });
+  }
+
+  create() {
     this.innerHTML = `
   <nav class="navbar navbar-expand-lg navbar-light bg-primary px-3 px-sm-4 px-md-5 mb-4">
     <div class="container-fluid d-flex justify-content-between align-items-center text-white">
-      <a class="navbar-brand text-white d-flex align-items-center text-decoration-none" onclick="window.location.href = '#'; location.reload();">
-        <img src="" alt="logo ex" class="logo" height="50">
+      <a role="button" class="navbar-brand text-white d-flex align-items-center text-decoration-none" onclick="window.location.href = '#'; location.reload();">
+        <img src="${ex_bd}" alt="logo ex" class="logo" height="50">
         <h2 class="h2 ms-4">Ex-BD</h2>
       </a>
       <button class="navbar-toggler bg-white color-edge" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

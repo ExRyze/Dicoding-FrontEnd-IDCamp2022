@@ -1,0 +1,91 @@
+:root {
+  --primary: #071E3D;
+  --secondary: #1F4287;
+  --edge: #00ADB5;
+  --warning: #FBDF07;
+  --danger: #FF1700;
+  --success: #3EC70B;
+  --white: #F7F7F7;
+  --light: #E7F6F2;
+  --dark: #222831;
+  --dark-secondary: #393E46;
+}
+.h-fit {height: fit-content;}
+.text-primary {color: var(--primary)!important;}
+.text-secondary {color: var(--secondary)!important;}
+.text-edge {color: var(--edge)!important;}
+.text-warning {color: var(--warning)!important;}
+.text-danger {color: var(--danger)!important;}
+.text-success {color: var(--success)!important;}
+.text-white {color: var(--white)!important;}
+.text-light {color: var(--light)!important;}
+.text-dark {color: var(--dark)!important;}
+.text-dark-secondary {color: var(--dark-secondary)!important;}
+.bg-primary {background-color: var(--primary)!important;}
+.bg-secondary {background-color: var(--secondary)!important;}
+.bg-edge {background-color: var(--edge)!important;}
+.bg-warning {background-color: var(--warning)!important;}
+.bg-danger {background-color: var(--danger)!important;}
+.bg-success {background-color: var(--success)!important;}
+.bg-white {background-color: var(--white)!important;}
+.bg-light {background-color: var(--light)!important;}
+.bg-dark {background-color: var(--dark)!important;}
+.bg-dark-secondary {background-color: var(--dark-secondary)!important;}
+.border-5 {border: 5px solid!important;}
+.border-4 {border: 4px solid!important;}
+.border-3 {border: 3px solid!important;}
+.border-2 {border: 2px solid!important;}
+.border-1 {border: 1px solid!important;}
+.border-0 {border: 0px solid!important;}
+.border-top-5 {border-top: 5px solid!important;}
+.border-top-4 {border-top: 4px solid!important;}
+.border-top-3 {border-top: 3px solid!important;}
+.border-top-2 {border-top: 2px solid!important;}
+.border-top-1 {border-top: 1px solid!important;}
+.border-right-5 {border-right: 5px solid!important;}
+.border-right-4 {border-right: 4px solid!important;}
+.border-right-3 {border-right: 3px solid!important;}
+.border-right-2 {border-right: 2px solid!important;}
+.border-right-1 {border-right: 1px solid!important;}
+.border-bottom-5 {border-bottom: 5px solid!important;}
+.border-bottom-4 {border-bottom: 4px solid!important;}
+.border-bottom-3 {border-bottom: 3px solid!important;}
+.border-bottom-2 {border-bottom: 2px solid!important;}
+.border-bottom-1 {border-bottom: 1px solid!important;}
+.border-left-5 {border-left: 5px solid!important;}
+.border-left-4 {border-left: 4px solid!important;}
+.border-left-3 {border-left: 3px solid!important;}
+.border-left-2 {border-left: 2px solid!important;}
+.border-left-1 {border-left: 1px solid!important;}
+.border-x-5 {border-right: 5px solid!important; border-left: 5px solid!important;}
+.border-x-4 {border-right: 4px solid!important; border-left: 4px solid!important;}
+.border-x-3 {border-right: 3px solid!important; border-left: 3px solid!important;}
+.border-x-2 {border-right: 2px solid!important; border-left: 2px solid!important;}
+.border-x-1 {border-right: 1px solid!important; border-left: 1px solid!important;}
+.border-y-5 {border-top: 5px solid!important; border-bottom: 5px solid!important;}
+.border-y-4 {border-top: 4px solid!important; border-bottom: 4px solid!important;}
+.border-y-3 {border-top: 3px solid!important; border-bottom: 3px solid!important;}
+.border-y-2 {border-top: 2px solid!important; border-bottom: 2px solid!important;}
+.border-y-1 {border-top: 1px solid!important; border-bottom: 1px solid!important;}
+.border-primary {border-color: var(--primary)!important;}
+.border-secondary {border-color: var(--secondary)!important;}
+.border-edge {border-color: var(--edge)!important;}
+.border-warning {border-color: var(--warning)!important;}
+.border-danger {border-color: var(--danger)!important;}
+.border-success {border-color: var(--success)!important;}
+.border-white {border-color: var(--white)!important;}
+.border-light {border-color: var(--light)!important;}
+.border-dark {border-color: var(--dark)!important;}
+.border-dark-secondary {border-color: var(--dark-secondary)!important;}
+.text-left {text-align: left!important;}
+.text-right {text-align: right!important;}
+.text-center {text-align: center!important;}
+.text-justify {text-align: justify!important;}
+.text-indent {text-indent: 2rem!important;}
+.scrollbar-none::-webkit-scrollbar{width: 0!important;}
+anime-card .card-body {height: 250px!important;}
+.z-index-navbar {z-index: 1090;}
+main {min-height: calc(100vh - 180px)!important;}
+@media (min-width: 576px) {
+  .border-left-sm-2 {border-left: 2px solid!important;}
+}
